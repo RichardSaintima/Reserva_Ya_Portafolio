@@ -484,7 +484,7 @@ def dashboard_configuracion(request):
 # VIEWS DE SOLICITUDES
 @login_required
 def dashboard_solicitudes(request):
-    solicitudes = Solicitud.objects.all()
+    solicitudes = Solicitud.objects.filter(estado="pendiente")
     return render(request,'solicitud/solicitudes.html',{'solicitudes':solicitudes})
 
 @login_required

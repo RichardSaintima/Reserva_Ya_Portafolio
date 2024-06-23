@@ -137,4 +137,24 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
         });
     }
-    
+    document.addEventListener('DOMContentLoaded', function () {
+        const rutInput = document.querySelector('input[name="rut_empresa"]');
+        
+        rutInput.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/[^\dKk]/g, ''); // Solo permite dígitos y la letra 'K' en minúscula o mayúscula
+            
+            // Formatea el RUT con puntos y guión
+            if (value.length > 1) {
+                value = value.slice(0, value.length - 1) + '-' + value.slice(value.length - 1);
+            }
+            if (value.length > 5) {
+                value = value.slice(0, value.length - 5) + '.' + value.slice(value.length - 5);
+            }
+            if (value.length > 9) {
+                value = value.slice(0, value.length - 9) + '.' + value.slice(value.length - 9);
+            }
+            
+            e.target.value = value.toUpperCase(); // Convierte todo a mayúsculas antes de asignarlo al input
+        });
+    });
+        

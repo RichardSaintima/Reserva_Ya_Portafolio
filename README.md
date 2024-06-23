@@ -5,3 +5,5 @@
 4 - pip install geopy
 5 - pip install django-allauth
 6 - python manage.py runserver
+7 - pip install celery
+8 - pip install jwt

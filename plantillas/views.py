@@ -15,6 +15,11 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.utils.safestring import mark_safe
 from .forms import SolicitudForm
+from decimal import Decimal
+from .flow_utils import create_payment,obtener_estado_pago,make_request
+from django.views.decorators.csrf import csrf_exempt
+from django.core.serializers.json import DjangoJSONEncoder
+from datetime import datetime, date, time
 
 # Create your views here.
 def index(request):
@@ -111,6 +116,18 @@ def cambiar_favorito(request, id_cancha):
 
     return JsonResponse({'success': True, 'favorito': favorito.estado})
 
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            return float(obj)
+        return super(DecimalEncoder, self).default(obj)
+    
+class CustomJSONEncoder(DjangoJSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, (datetime, date, time)):
+            return obj.isoformat()
+        return super().default(obj)
+
 @login_required
 def reservar_hora(request, id_cancha):
     imagenes = ImagenCancha.objects.filter(cancha=id_cancha)
@@ -129,16 +146,30 @@ def reservar_hora(request, id_cancha):
 
         validation_result = validar_datos_reserva(fecha, hora_inicio, hora_fin, id_cancha)
         if validation_result['valid']:
-            reserva.objects.create(
+            hora_inicio_dt = datetime.strptime(hora_inicio, '%H:%M')
+            hora_fin_dt = datetime.strptime(hora_fin, '%H:%M')
+            horas_reservadas = (hora_fin_dt - hora_inicio_dt).seconds / 3600
+            costo_total = cancha.precio * horas_reservadas
+            reserva_temporal= reserva(
                 user=request.user,
                 cancha_id=id_cancha,
                 fecha=fecha,
                 horainicio=hora_inicio,
                 horafin=hora_fin,
-                estado=True
+                estado=True,
+                total= costo_total
             )
-            messages.success(request, 'Reserva realizada con éxito.')
-            return redirect('/')
+            reserva_temporal.save()
+            response= create_payment(request,reserva_temporal.id_reserva  ,costo_total,request.user.email)
+            
+            print(response)
+            try:
+                url = response['url']
+                token = response['token']
+                payment_url = f"{url}?token={token}"
+                return redirect(payment_url)
+            except KeyError:
+                print("ERRORRRR")
         else:
             for error_message in validation_result['errors']:
                 messages.error(request, error_message)
@@ -493,3 +524,34 @@ def dashboard_favorita(request):
         'canchas_con_imagenes': canchas_con_imagenes,
     }
     return render(request, 'pages/favoritas.html', context)
+
+
+@csrf_exempt
+def retorno_flow(request):
+    token = request.POST.get('token')
+    url = 'https://sandbox.flow.cl/api/payment/getStatus'
+    parametros = {
+        'apiKey': settings.FLOW_KEY_SANDBOX,
+        'token': token
+    }
+    response= make_request(url, parametros, method='GET')
+    transaccion={
+        'commerceOrder': response['commerceOrder'],
+        'requestDate': response['requestDate'],
+        'subject': response['subject'],
+        'payer': response['payer'],
+        'amount': response['amount'],
+        'currency': response['currency'],
+        'media': response['paymentData']['media'],
+        'status': response['status']
+    }
+    orden_comercio = transaccion['commerceOrder']
+    numero_reserva= int(orden_comercio[1:])
+    reserva1= reserva.objects.get(id_reserva= numero_reserva)
+    if transaccion['status'] == 2:
+        reserva1.estado_pago = "Pagado"
+        reserva1.save()
+    else:
+        reserva1.delete()
+    
+    return render(request,'retorno_flow.html',{'transaccion': transaccion})

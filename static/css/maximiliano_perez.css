@@ -603,3 +603,25 @@ aside{
 }
 
 
+/*Retorno Flow*/
+
+.comprobante {
+    background-color: rgb(10, 186, 255); /* Fondo celeste */
+    border-radius: 10px; /* Esquinas redondeadas */
+    padding: 15px; /* Espacio interno */
+    text-align: center; /* Centrar contenido */
+    margin: 0 auto; /* Centrar horizontalmente */
+    max-width: 600px; /* Ancho máximo del contenedor */
+    margin-top: 20px; /* Espacio superior */
+}
+
+.comprobante h3 {
+    color: black; /* Color negro para el título */
+}
+
+.comprobante p {
+    color: black; /* Color negro para los párrafos */
+    text-align: left; /* Alinear texto a la izquierda */
+    margin-top: 10px; /* Espacio superior entre párrafos */
+}
+

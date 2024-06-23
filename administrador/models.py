@@ -2,7 +2,8 @@ from django.db import models
 from django.db.models import Avg
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from datetime import timedelta
+from celery import shared_task
 
 class Tipo_cancha(models.Model):
     id_tipo_cancha = models.AutoField(primary_key=True)
@@ -53,7 +54,9 @@ class reserva(models.Model):
     horainicio = models.TimeField()
     horafin = models.TimeField()
     estado = models.BooleanField(default=False)
-
+    total = models.DecimalField(max_digits=10,decimal_places=2, blank=True, null=True)
+    estado_pago= models.CharField(max_length=10,default='Pendiente')
+    fecha_creacion= models.DateTimeField(default=timezone.now)
     def __str__(self):
         return f"{self.id_reserva} {self.user} {self.cancha} {self.fecha} {self.horainicio} {self.horafin} {self.estado}"
     
@@ -114,3 +117,9 @@ class Disponibilidad(models.Model):
 
     def __str__(self):
         return f"{self.cancha.nombre} - {self.dia_semana} ({self.horaapertura} - {self.horacierre})"
+    
+@shared_task
+def eliminar_objetos_pendientes():
+    tiempo_limite = timezone.now() - timedelta(minutes=1)
+    objetos_pendientes = reserva.objects.filter(estado="Pendiente", fecha_creacion__lte=tiempo_limite)
+    objetos_pendientes.delete()

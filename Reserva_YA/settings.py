@@ -190,3 +190,8 @@ DEFAULT_FROM_EMAIL = 'i20998785@gmail.com'
 
 # settings.py
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'https://reserva-ya-deploy.onrender.com']
+
+# Configuracion Api de flow
+
+FLOW_KEY_SANDBOX= '2FFA4F5D-0862-4209-A430-914A6174DL0A'
+FLOW_SECRET_SANDBOX = 'c7b6dc751baa4757d834015cebf61e86d15e8096'

@@ -5,13 +5,13 @@
     <div class="image-container">
       <!-- Botón de favoritos -->
       {% if user.is_authenticated %}
-        <a class="like-button" data-url="{% url 'plantillas:cambiar_favorito' item.cancha.id_cancha %}">
+        <p class="like-button" data-url="{% url 'plantillas:cambiar_favorito' item.cancha.id_cancha %}">
           {% if item.es_favorito %}
             <i class="fa fa-heart"></i>
           {% else %}
             <i class="fa fa-heart-crack"></i>
           {% endif %}
-        </a>
+        </p>
       {% endif %}
       <a href="{% url 'plantillas:detalle_cancha' item.cancha.id_cancha %}">
         {% if item.primera_imagen %}
@@ -27,13 +27,13 @@
             <span>N/A</span>
           {% endif %}
         </div>
-      </a>
     </div>
     <div class="card-info">
       <h2 class="title">{{ item.cancha.nombre }}</h2>
       <p class="description">{{ item.cancha.descripcion }}</p>
       <p class="price">${{ item.cancha.precio }} CLP hora.</p>
     </div>
+    </a>
 </div>
 {% endfor %}
 

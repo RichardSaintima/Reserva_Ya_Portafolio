@@ -20,5 +20,6 @@ urlpatterns = [
     path('dashboard_comunicacion/<int:id_cancha>/', views.dashboard_comunicacion, name='dashboard_comunicacion'),
     path('termino_uso/', views.termino_uso, name='termino_uso'),
     path('politica_privacidad/', views.politica_privacidad, name='politica_privacidad'),
+    path('retorno_flow/', views.retorno_flow, name='retorno_flow'),
     path('dashboard_favorita/', views.dashboard_favorita, name='dashboard_favorita'),
 ]

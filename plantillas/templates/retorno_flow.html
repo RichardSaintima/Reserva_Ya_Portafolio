@@ -1,0 +1,11 @@
+{% if transaccion.status == 2 %}
+    <div class="comprobante">
+        <h3>Comprobante del pedido</h3>
+        <p>Pedido: {{ transaccion.commerceOrder }}</p>
+        <p>Fecha: {{ transaccion.requestDate }}</p>
+        <p>Asunto: {{ transaccion.subject }}</p>
+        <p>Correo: {{ transaccion.payer }}</p>
+        <p>Total: {{ transaccion.amount }} {{ transaccion.currency }}</p>
+        <p>Medio de Pago: {{ transaccion.media }}</p>
+    </div>
+{% endif %}

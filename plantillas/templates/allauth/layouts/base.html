@@ -1,5 +1,7 @@
+
 {% load i18n %}
 {% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +13,7 @@
         </title>
         {% block extra_head %}
         {% endblock extra_head %}
-        <link rel="stylesheet" href="{% static 'css\joaquin_caba.css' %}">
+        <link rel="stylesheet" href="{% static 'css/joaquin_caba.css' %}">
     </head>
     <body>
         {% block body %}
@@ -23,9 +25,14 @@
                     </ul>
                 </div>
             {% endif %}
+            
+            <div class="form-container">
+                {% block content %}
+                {% endblock content %}
+            </div>
+            
             <div class="menu">
-                <strong>{% trans "Menu:" %}</strong>
-                <ul>
+                <ul class="menu-list">
                     {% if user.is_authenticated %}
                         <li>
                             <a href="{% url 'account_email' %}">{% trans "Change Email" %}</a>
@@ -42,10 +49,6 @@
                         </li>
                     {% endif %}
                 </ul>
-            </div>
-            <div class="form-container">
-                {% block content %}
-                {% endblock content %}
             </div>
         {% endblock body %}
         {% block extra_body %}

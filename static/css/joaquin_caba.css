@@ -219,12 +219,14 @@ input[for="id_remember"] {
     width: 70%; /* Ajustar el ancho del input al 100% del contenedor */
     margin: 0 auto;
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .contenedor-input_label label {
     width: 70%; /* Ajustar el ancho de la etiqueta al 100% del contenedor */
     margin: 0 auto;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    
 }
 
 .btn-solicitud {
@@ -262,7 +264,6 @@ input[for="id_remember"] {
 }
 
 
-
 /*Cerrar sesión*/
 
 /* Estilos para el formulario */
@@ -272,6 +273,7 @@ input[for="id_remember"] {
     padding: 20px;
     width: 50%;
     margin: 0 auto; /* Centramos el formulario */
+    margin-top: 4rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opcional: sombra para dar un efecto de profundidad */
     text-align: center;
 }
@@ -285,26 +287,36 @@ body {
 }
 
 .menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
     margin-bottom: 20px;
 }
 
-.menu ul {
+.menu-list {
     list-style-type: none;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
-}
-
-.menu ul li {
-    margin-top: 5px;
     display: flex;
-    text-align: start;
-    flex-direction: column;
-    font-size: small;
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    width: 50%;
 }
 
-.menu a {
+.menu-list li {
+    margin: 0 10px; /* Añade margen lateral para separar los elementos */
+    text-align: center;
+    font-size: small;
+    border-radius: 10px;
+    background-color: rgb(10, 186, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Añade padding para que los elementos se vean más espaciados */
+    flex: 1; /* Hace que todos los elementos tengan el mismo tamaño */
+    max-width: calc(100% / 3 - 20px); /* Calcula el ancho máximo restando los márgenes */
+}
+
+.menu-list a {
     text-decoration: none;
-    color: #1d3557;
+    color: black;
 }
 
 .messages {
@@ -315,5 +327,3 @@ body {
     border-radius: 5px;
     margin-bottom: 20px;
 }
-
-
