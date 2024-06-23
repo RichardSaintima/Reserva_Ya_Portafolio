@@ -21,7 +21,6 @@ urlpatterns = [
     
     path('buscar_administrador/', views.buscar_administrador, name='buscar_administrador'),
     
-    path('dashboard_favorita/', views.dashboard_favorita, name='dashboard_favorita'),
     path('dashboard_configuracion/', views.dashboard_configuracion, name='dashboard_configuracion'),
     
     path('dashboard_perfil/', views.dashboard_perfil, name='dashboard_perfil'),

@@ -83,7 +83,7 @@
     cursor: pointer;
     color: rgb(57, 158, 252);
 }
-.like-button i {
+.sacarFovirotos i {
     color: red;
 }
 .like-button i:hover, .like-button:hover {

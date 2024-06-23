@@ -148,32 +148,6 @@ def dashboard_detalle_cancha(request):
     }
     return render(request, 'dashboard/detalle_cancha/administrar_detalle_Tipo_cancha.html', context)
 
-@login_required
-def dashboard_favorita(request):
-    usuario = request.user
-    canchas_con_imagenes = []
-
-    # Obtener las canchas que son favoritas del usuario
-    favoritos = Favorito.objects.filter(user=usuario, estado=True)
-    canchas = [favorito.cancha for favorito in favoritos]
-
-    for cancha in canchas:
-        primera_imagen = cancha.imagenes.first()
-        avg_calificacion = Comentario.objects.filter(cancha=cancha).aggregate(Avg('calificacion'))['calificacion__avg']
-        canchas_con_imagenes.append({
-            'cancha': cancha,
-            'primera_imagen': primera_imagen,
-            'avg_calificacion': avg_calificacion
-        })
-
-    context = {
-        'titulo': 'Favoritos',
-        'usuario': usuario,
-        'canchas_con_imagenes': canchas_con_imagenes,
-    }
-    return render(request, 'pages/favoritas.html', context)
-
-
 # FIN DE LOS VIEWS DE DASHBOARD
 
 
