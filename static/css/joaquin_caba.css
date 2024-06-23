@@ -164,6 +164,82 @@ input[for="id_remember"] {
     box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
   }
 
+/* Estilos para el formulario */
+.form-container {
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+    margin: 10% auto 0 auto; /* Centramos el formulario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-container button {
+    background-color: rgb(10, 186, 255); /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Quitamos el borde del botón */
+    padding: 10px 20px; /* Añadimos un padding interno al botón */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiamos el cursor al pasar por encima del botón */
+    margin-top: 20px; /* Añadimos margen superior al botón */
+
+}
+.form-container button:hover {
+    background-color: rgb(10, 186, 255); /* Cambiamos el color de fondo al pasar por encima del botón */
+}
+.form-container p {
+    margin-top: 20px; /* Añadimos margen superior al párrafo */
+}
+.form-container h1 {
+    margin-bottom: 20px; /* Añadimos margen inferior al título */
+    color: #06cef6;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 20px;
+}
+
+.menu-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    width: 50%;
+}
+.menu-list  {
+    margin-bottom: 10%;
+}
+.menu-list li {
+    margin: 0 10px; /* Añade margen lateral para separar los elementos */
+    text-align: center;
+    font-size: small;
+    border-radius: 10px;
+    background-color: rgb(10, 186, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Añade padding para que los elementos se vean más espaciados */
+    flex: 1; /* Hace que todos los elementos tengan el mismo tamaño */
+    max-width: calc(100% / 3 - 20px); /* Calcula el ancho máximo restando los márgenes */
+}
+
+.menu-list a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+.messages {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
 /* Google */
 .loginBtn--google {
     /*font-family: "Roboto", Roboto, arial, sans-serif;*/
@@ -221,7 +297,17 @@ input[for="id_remember"] {
     margin-bottom: 10px;
     border-radius: 10px;
 }
-
+.form-container input:focus, .form-container input[type="checked"]:focus {
+    border-color: #0abaff;
+    outline: none;
+    border: 1px solid #0abaff;
+}
+.form-container input, .form-container input[type="checked"] {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 .contenedor-input_label label {
     width: 70%; /* Ajustar el ancho de la etiqueta al 100% del contenedor */
     margin: 0 auto;
@@ -244,7 +330,14 @@ input[for="id_remember"] {
         width: 100%; /* Ajustar el ancho del formulario en pantallas más pequeñas */
         
     }
-    
+    .menu-list {
+        flex-direction: column; /* Cambiar la dirección de los elementos a columna */
+        width: 80%; /* Ajustar el ancho del menú en pantallas más pequeñas */
+    }
+    .menu-list li {
+        margin: 10px 0; /* Añadir margen superior e inferior para separar los elementos */
+        max-width: 100%; /* Ajustar el ancho máximo al 100% */
+    }
     .contenedor-input_label input,
     .contenedor-input_label label {
         width: 100%; /* Ajustar el ancho del input y label al 100% en pantallas más pequeñas */
@@ -253,8 +346,10 @@ input[for="id_remember"] {
     .btn-solicitud {
         width: 100%; /* Ajustar el ancho del botón al 100% en pantallas más pequeñas */
     }
+    .form-container {
+        width: 80%; /* Ajustar el ancho del formulario en pantallas más grandes */
+    }
 }
-
 /* Estilos para tamaños de pantalla mayores a 768px (puedes ajustar según necesites) */
 @media (min-width: 769px) {
     .formulario-solicitud {
@@ -265,65 +360,3 @@ input[for="id_remember"] {
 
 
 /*Cerrar sesión*/
-
-/* Estilos para el formulario */
-.form-container {
-    background-color: rgb(10, 186, 255); /* Color celeste para el fondo */
-    border-radius: 10px; /* Bordes redondeados */
-    padding: 20px;
-    width: 50%;
-    margin: 0 auto; /* Centramos el formulario */
-    margin-top: 4rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opcional: sombra para dar un efecto de profundidad */
-    text-align: center;
-}
-
-/* Otros estilos opcionales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-}
-
-.menu {
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
-    margin-bottom: 20px;
-}
-
-.menu-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-between; /* Distribuye el espacio entre los elementos */
-    width: 50%;
-}
-
-.menu-list li {
-    margin: 0 10px; /* Añade margen lateral para separar los elementos */
-    text-align: center;
-    font-size: small;
-    border-radius: 10px;
-    background-color: rgb(10, 186, 255);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px; /* Añade padding para que los elementos se vean más espaciados */
-    flex: 1; /* Hace que todos los elementos tengan el mismo tamaño */
-    max-width: calc(100% / 3 - 20px); /* Calcula el ancho máximo restando los márgenes */
-}
-
-.menu-list a {
-    text-decoration: none;
-    color: black;
-}
-
-.messages {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}

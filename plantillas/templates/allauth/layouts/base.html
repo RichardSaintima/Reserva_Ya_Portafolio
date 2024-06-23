@@ -13,9 +13,11 @@
         </title>
         {% block extra_head %}
         {% endblock extra_head %}
-        <link rel="stylesheet" href="{% static 'css/joaquin_caba.css' %}">
+        {% include "bases/components/_styles.html" %}
     </head>
-    <body>
+    <body >
+        {% include 'bases/layout/header.html' %}
+        <div class="fijaHeader"></div>
         {% block body %}
             {% if messages %}
                 <div class="messages">
@@ -25,12 +27,12 @@
                     </ul>
                 </div>
             {% endif %}
-            
             <div class="form-container">
                 {% block content %}
                 {% endblock content %}
             </div>
-            
+
+            </div>
             <div class="menu">
                 <ul class="menu-list">
                     {% if user.is_authenticated %}
@@ -53,5 +55,9 @@
         {% endblock body %}
         {% block extra_body %}
         {% endblock extra_body %}
+        {% include 'bases/layout/footer.html' %}
+        <!-- Los Javascripts  -->
+        {% include "bases/components/_javascript.html" %} 
+    </body>
     </body>
 </html>

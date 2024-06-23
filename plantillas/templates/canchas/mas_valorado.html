@@ -4,11 +4,6 @@
 {% block content %}
 {% include 'bases/components/alertas.html' %}
 
-{% if canchas|length == 0 %}
-    <div class="nohay">
-        <h1>No se encontraron canchas</h1>
-    </div>
-{% endif %}
 
 {% if canchas|length > 0 %}
 <br><br><h2 class="dashboard_cancha_titulo">Canchas con más valoración</h2><br><br>
@@ -50,6 +45,11 @@
     </div>
     {% endfor %}
 </div>
+{% else %}
+<div class="nohay">
+  <h1>No se encontraron canchas</h1>
+</div>
 {% endif %}
+
 
 {% endblock %}

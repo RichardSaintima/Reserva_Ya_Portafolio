@@ -1,3 +1,12 @@
+{% extends "bases/base.html" %}
+{% load static %} 
+
+{% block content%}
+
+
+{% include 'bases/components/alertas.html' %}
+
+<div class="carousel">
 {% if transaccion.status == 2 %}
     <div class="comprobante">
         <h3>Comprobante del pedido</h3>
@@ -9,3 +18,6 @@
         <p>Medio de Pago: {{ transaccion.media }}</p>
     </div>
 {% endif %}
+
+
+{% endblock %}

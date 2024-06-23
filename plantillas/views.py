@@ -202,7 +202,7 @@ def reservar_hora(request, id_cancha):
         r['fecha'] = r['fecha'].strftime("%Y-%m-%d")
         r['horainicio'] = r['horainicio'].strftime("%H:%M")
         r['horafin'] = r['horafin'].strftime("%H:%M")
-    reservas_json = json.dumps(reservas)
+    reservas_json = json.dumps(reservas, cls=CustomJSONEncoder)
 
     if len(horas_disponibles) == 0 and fecha is not None:
         dia = datetime.strptime(fecha, "%Y-%m-%d").strftime("%A").lower()
