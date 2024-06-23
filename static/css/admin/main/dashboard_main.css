@@ -1,0 +1,132 @@
+.dashboard_main {
+    padding: 1rem;
+}
+.FotoProducto {
+    width: 3.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+canvas {
+    max-width: 100%;
+}
+.texto_orden {
+    font-weight: bold;
+    color: #0abaff;
+}
+
+.FotoPerfilEdit {
+    margin: 0 auto;
+}
+.main_header {
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+}
+
+.user_info {
+    display: flex;
+    align-items: center;
+}
+
+.FotoPerfil {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user_name {
+    font-size: 1.5rem;
+    color: #333;
+}
+.user_avatar {
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+
+.main_content {
+    margin-top: 1rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+}
+
+.summary_cards {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    flex: 1;
+    background-color: #0abaff;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+    cursor: pointer;
+    position: relative;
+}
+.card:hover {
+    background-color: #026f9ebc;
+    color: #fff;
+
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.card p {
+    margin: 0.5rem 0 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card_details {
+    display: none;
+    width: 100%;
+}
+.card_details .card_details_table {
+    width: 100%;
+}
+.card_details_table th {
+    background-color: #58b6f9;
+}
+
+.table_section {
+    margin-top: 2rem;
+}
+
+.table_section h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.summary_table, .card_details_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.summary_table th, .summary_table td, .card_details_table th, .card_details_table td{
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.summary_table th{
+    background-color: #f4f4f9;
+}
+
+.summary_table tr:nth-child(even), .card_details_table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

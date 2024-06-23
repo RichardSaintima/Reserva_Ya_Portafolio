@@ -1,0 +1,8 @@
+<div class="card_details_table">
+    <br><h3 class="dashboard_cancha_titulo">Informe Ordenes Diarias</h3><br>
+    <canvas id="ordenMensual"></canvas>
+</div>
+<script>
+    const ordenDiarias = JSON.parse('{{ orden_data|safe|escapejs }}');
+    const dayOrdenfMonth = JSON.parse('{{ day_of_month }}');
+</script>

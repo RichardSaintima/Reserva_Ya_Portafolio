@@ -1,0 +1,39 @@
+{% extends "bases/base.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% load socialaccount %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+
+{% block content %}
+    {% element h1 %}
+        {% trans "Sign In" %}
+    {% endelement %}
+
+    {% url 'account_login' as login_url %}
+    <div class="contenedor-login">
+        <form class="formulario-login" method="POST" action="{% url 'account_login' %}">
+            <h2 class="titulo-login">Inicio de Sesión</h2>
+            {% csrf_token %}
+            {% csrf_token %}
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button type="submit" class="btn_login">{% trans "Sign In" %}</button>  
+            <div class="contenedor-forgot_sigup">
+                <a class="btn-contraseña" href="{% url 'account_signup' %}" >{% trans "Sign Up" %}</a>
+                <a class="btn-contraseña" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                
+            </div>
+            <div class="contenedor-forgot_sigup">
+                <a href="{% provider_login_url 'google' %}" class="btn btn-primary loginBtn loginBtn--google">
+                        Login with Google
+                </a>
+            </div>
+          </form>          
+    </div>
+ 
+{% endblock content %}

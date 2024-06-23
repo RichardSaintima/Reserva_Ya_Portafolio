@@ -1,0 +1,78 @@
+{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_main">
+  <header class="main_header">
+    <div class="user_info">
+      {% if usuario.profile_image %}
+        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+      {% else %}
+              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+      {% endif %}
+        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+    </div>
+</header>
+
+  <section class="main_content">
+    <div class="summary_cards">
+      <div class="card" onclick="toggleDetails('total_usuarios')">
+        <h3>Total de Usuarios</h3>
+        <p>{{usuarios}}</p>
+      </div>
+      <div class="card" onclick="toggleDetails('ventas_mes')">
+        <h3>Informes Ventas</h3>
+        <p>{{ total_precios_reservas }}</p>
+      </div>
+      <div class="card" onclick="toggleDetails('productos_inventario')">
+        <h3>Canchas en Inventario</h3>
+        <p>{{cantidad_canchas}}</p>
+      </div>
+    </div>
+
+    <div class="table_section">
+
+      <div class="card_details" id="total_usuarios">
+      <h2>Resumen de Usuarios</h2>
+        {% include 'dashboard/detalle_usuario/detalles_all_user.html' %}
+      </div>
+      <div class="card_details" id="ventas_mes">
+        <h2>Resumen de Ventas</h2>
+        {% include 'dashboard/detalle_venta/detalles_ventas_mes.html' %}
+      </div>
+      <div class="card_details" id="productos_inventario">
+        <h2>Resumen de Inventario</h2>
+        {% include 'dashboard/detalle_cancha/detalles_cancha_inventario.html' %}
+      </div>
+      <div  id="table_seccion_resumen">
+        <h2>Resumen del Negocio</h2>
+        <table class="summary_table">
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Rol</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+              <tr>
+                  <td>  
+                      {% if user.profile.profile_image %}
+                          <img class="FotoProducto" src="{{ user.profile.profile_image.url }}" alt="Avatar de Usuario" />
+                      {% else %}
+                          <img class="FotoProducto" src="{% static 'img/otros/foto_hombre.png' %}" alt="Avatar de Usuario" />
+                      {% endif %}
+                  </td>
+                  <td>{{ user.profile.rol.tipo_rol }}</td>
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.last_name }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}

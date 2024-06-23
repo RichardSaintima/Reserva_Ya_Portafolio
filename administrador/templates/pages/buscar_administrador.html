@@ -1,0 +1,114 @@
+{% extends "bases_admin/base_admin.html" %} 
+{% load static %} 
+{% block content %}
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_main">
+    
+    {% if canchas or usuarios or reservas %}    
+    <h3 class="dashboard_cancha_titulo">Busqueda administrador</h3>
+    {% endif %}
+
+    {% if canchas %}
+    <h3 class="dashboard_busqueda_titulo">Canchas</h3>
+    <table class="card_details_table">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Administrar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cancha in canchas %}
+            <tr>
+                <td>
+                    {% with cancha.imagenes.first as primera_imagen %}
+                        {% if primera_imagen %}
+                            <img class="FotoProductocancha" src="{{ primera_imagen.imagen.url }}" alt="LogoTipo" />
+                        {% endif %}
+                    {% endwith %}
+                </td>
+                <td>{{ cancha.nombre|slice:":20" }}</td>
+                <td>{{ cancha.tipo_cancha.nombre }}</td> <!-- Aquí obtenemos el nombre del tipo de cancha -->
+                <td>
+                    <a href="{% url 'administrador:dashboard_cancha_administrar' cancha.id_cancha %}" class="btn_detalle">
+                        <i class="fa-solid fa-gears"></i>
+                        Detalles
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+  
+    {% if reservas %}
+        <h3 class="dashboard_busqueda_titulo">Reservas</h3>
+        <table class="card_details_table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Usuario</th>
+                    <th>Cancha</th>
+                    <th>Detalles</th>
+                    <th>Administrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.fecha }}</td>
+                    <td>{{ reserva.user.username }}</td> <!-- Aquí obtenemos el nombre de usuario -->
+                    <td>{{ reserva.cancha.nombre|slice:":20" }}</td>
+                    <td>Orden #{{ reserva.id_reserva }}</td>
+                    <td>
+                        <a href="{% url 'administrador:dashboard_orden_administrar' reserva.id_reserva %}" class="btn_detalle">
+                            <i class="fa-solid fa-gears"></i>
+                            Detalles
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+  
+    {% if usuarios %}
+        <h3 class="dashboard_busqueda_titulo">Usuarios</h3>
+        <table class="card_details_table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Administrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in usuarios %}
+                <tr>
+                    <td>{{ user.first_name|slice:":20" }}</td>
+                    <td>{{ user.username|slice:":20" }}</td> <!-- Aquí obtenemos el nombre de usuario -->
+                    <td>{{ user.email|slice:":20" }}</td>
+                    <td>{{ user.profile.rol.tipo_rol }}</td>
+                    <td>
+                        <a href="{% url 'administrador:dashboard_usuario_administrar' %}" class="btn_detalle">
+                            <i class="fa-solid fa-gears"></i>
+                            Detalles
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {% if not canchas and not usuarios and not reservas %}    
+    <div class="nohay">
+        <h1>No se encontraron Resultados</h1>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "bases/base.html" %}
+{% load static %} 
+
+{% block content%}
+
+
+{% include 'bases/components/alertas.html' %}
+
+<div class="carousel">
+    <i class="fa-solid fa-chevron-left control-btn" id="retroceder"></i>
+    <img class="imagen" src="{% static 'img/carrousel/imagen1.jpg' %}" alt="Imagen">
+    <img class="imagen" src="{% static 'img/carrousel/imagen3.jpg' %}" alt="Imagen">
+    <img class="imagen" src="{% static 'img/carrousel/imagen4.jpg' %}" alt="Imagen">
+    <img class="imagen" src="{% static 'img/carrousel/imagen5.jpg' %}" alt="Imagen">
+    <img class="imagen" src="{% static 'img/carrousel/imagen7.jpg' %}" alt="Imagen">
+    <i class="fa-solid fa-angle-right control-btn" id="avanzar"></i>
+</div>
+
+<div class="filtrarCanchas">
+    <div class="contenidofiltrarCanchas">
+        <label for="filtrar">Filtrar por:</label>
+        <select id="filtrar" onchange="mostrarOpcion()">
+            <option value="0">Selecciona una opción</option>
+            <option value="tipo">Tipo</option>
+            <option value="region">Región</option>
+            <option value="comuna">Comuna</option>
+            <option value="precio">Precio</option>
+        </select>
+    </div>
+    <div class="contenidofiltrarCanchas">
+        <div class="tipo" style="display:none;">
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" name="tipo"  onchange="filtrarPorTipoLasCanchas()">
+                <option value="0">Todas las canchas</option>
+                {% for tipo in tipo_canchas %}
+                    <option value="{{ tipo.nombre }}">{{ tipo.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="region"  style="display:none;">
+            <label for="region">Región:</label>
+            <select id="region" name="region" onchange="filtrarPorTipoLasCanchas()">
+                <option value="0">Todas los regiones</option>
+                {% for region in regiones %}
+                    <option value="{{region.nombre }}">{{ region.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="comuna"  style="display:none;">
+            <label for="comuna">Comuna:</label>
+            <select id="comuna" name="comuna" onchange="filtrarPorTipoLasCanchas()">
+                <option value="0">Todas las comunas</option>
+                {% for comuna in comunas %}
+                    <option value="{{ comuna.nombre }}">{{ comuna.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="precio"  style="display:none;">
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" min="0" name="precio">
+        </div> 
+    </div>
+    
+
+<div class="card-container">
+
+    {% include 'canchas/cards.html' %}
+
+</div>
+
+
+
+{% endblock %}
+   

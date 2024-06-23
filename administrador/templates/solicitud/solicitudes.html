@@ -1,0 +1,39 @@
+{% extends "bases_admin/base_admin.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_cancha_formulario">
+
+    <br><h3 class="dashboard_cancha_titulo">Solicitudes de Cuenta de Empresa</h3><br>
+
+    <div class="contenedor-solicitudes">
+        {% for solicitud in solicitudes %}
+        <div class="solicitud">
+            <div class="icono-solicitud">
+                <i class="fa-solid fa-building-user"></i>
+            </div>
+            <div class="informacion-solicitud">
+                <p>Rut empresa: <span>{{solicitud.rut_empresa}}</span></p>
+                <p>Nombre empresa: <span>{{solicitud.nombre_empresa}}</span></p>
+                <p>Razon Social: <span>{{solicitud.razon_social}}</span></p>
+            </div>
+            <div class="informacion-solicitud">
+                <p>Correo Electronico: <span>{{solicitud.correo_electronico}}</span></p>
+                <p>Direccion Empresa: <span>{{solicitud.direccion_empresa}}</span></p>
+                <p>Estado: <span>{{solicitud.estado}}</span></p>
+            </div>
+            <div class="botones-solicitud">      
+                <a href="{% url 'administrador:dashboard_aceptar_solicitud' solicitud.id_solicitud %}" class="btn_activar">Aceptar Solicitud</a>
+                <button class="btn_eliminar">Rechazar Solicitud</button>
+            </div>
+            
+            
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+
+{% endblock %}

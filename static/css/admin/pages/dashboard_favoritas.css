@@ -1,0 +1,141 @@
+
+/* Estilos para las tarjetas */
+.card-favoritas {
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px;
+    position: relative;
+    width: 30%; /* Ajusta el ancho de cada tarjeta */
+}
+.seccion-favoritas {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.image-container {
+    position: relative;
+}
+.image-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-favoritas img {
+    width: 100%;
+}
+
+.title-location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.7rem; /* Tamaño de fuente más pequeño para el título */
+    margin-top: 0;
+    margin-bottom: 5px; /* Nuevo margen inferior para el título */
+    margin-right: 50px;
+    color: black; /* Cambio del color del texto a negro */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.rating {
+    position: absolute;
+    right: 0;
+    padding: 5px;
+}
+
+.rating span {
+    display: inline-flex;
+    align-items: center;
+}
+
+.rating span i {
+    color: black;
+    margin-right: 5px;
+}
+
+.description {
+    font-size: 1.3rem;
+    margin: 2px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.price {
+    font-size: 1em; 
+    margin: 5px 0;
+    padding-top: 10px;
+}
+
+.like-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgb(57, 158, 252);
+}
+.like-button i {
+    color: red;
+}
+.like-button i:hover, .like-button:hover {
+    color: #ccc;
+}
+
+.card-favoritas-info {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+}
+
+/* Estilos para la disposición de las tarjetas */
+.card-favoritas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20;
+}
+
+.main_favoritas {
+    margin-top: 1rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+}
+/* Media queries para tamaños de pantalla más pequeños */
+@media only screen and (max-width: 768px) {
+    .card-favoritas {
+        width:100%; /* Ajusta el ancho de cada tarjeta para pantallas más pequeñas */
+    }
+    .main_favoritas {
+        box-shadow:none;
+        padding: 0;
+    }
+    .seccion-favoritas {
+        padding: 0;
+    }
+}
+
+/* Media queries para tamaños de pantalla aún más pequeños */
+@media only screen and (max-width: 576px) {
+    .card-favoritas {
+        width:100% ; /* Ajusta el ancho de cada tarjeta para pantallas aún más pequeñas */
+    }
+    .main_favoritas {
+        box-shadow:none;
+        padding: 0;
+    }
+    .seccion-favoritas {
+        padding: 0;
+    }
+    
+}

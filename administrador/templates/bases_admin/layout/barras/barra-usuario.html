@@ -1,0 +1,19 @@
+<div class="subBarra-usuario"  id="barraUsuario">
+    <a href="#">Dashdoard</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'account_logout' %}">Cerrar Sesión</a>
+    {% else %}
+    <a href="{% url 'account_login' %}">Iniciar Sesión</a>
+    {% endif %}
+    <a href="#">Configuración</a>
+</div>
+<div class="subBarra-usuario-movil"  id="barraUsuarioMovil">
+    <a href="#">Dashdoard</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'account_logout' %}">Cerrar Sesión</a>
+    {% else %}
+    <<a href="{% url 'account_login' %}">Iniciar Sesión</a>
+    {% endif %}
+    <a href="#">Configuración</a>
+</div>
+

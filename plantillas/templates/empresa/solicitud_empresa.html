@@ -1,0 +1,40 @@
+{% extends "bases/base.html" %}
+{% load static %} 
+
+{% block content%}
+
+
+{% include 'bases/components/alertas.html' %}
+
+<div class="contenedor-solicitud">
+    <form action="" method="post" class="formulario-solicitud">
+        <h2 class="titulo-formulario">Ingrese los datos de la empresa</h2>
+        {% csrf_token %}
+        {{ form.non_field_errors}}
+        <div class="contenedor-input_label">
+           {{ form.rut_empresa.label_tag}}
+           {{form.rut_empresa}}
+        </div>
+        <div class="contenedor-input_label">
+            {{ form.nombre_empresa.label_tag}}
+            {{ form.nombre_empresa}}
+          </div>
+        <div class="contenedor-input_label">
+            {{ form.razon_social.label_tag}}
+            {{form.razon_social}}
+        </div>
+        <div class="contenedor-input_label">
+            {{ form.direccion_empresa.label_tag}}
+            {{form.direccion_empresa}}
+        </div>
+        <div class="contenedor-input_label">
+            {{ form.correo_electronico.label_tag}}
+            {{form.correo_electronico}}
+        </div>
+        <input type="submit" class="btn-solicitud" value="Enviar">
+    </form>
+</div>
+
+
+{% endblock %}
+   

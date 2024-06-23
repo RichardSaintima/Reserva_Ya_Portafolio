@@ -1,0 +1,80 @@
+<div class="cancha_detalle_contenido">
+    <div class="detalle_item">
+        <strong>Dueño/a:</strong> {{ cancha.user.username }}
+    </div>
+    <div class="detalle_item">
+        <strong>Nombre:</strong> {{ cancha.nombre }}
+    </div>
+    <div class="detalle_item">
+        <strong>Ubicación:</strong>
+        <ul>
+            {% for direccion in direcciones %}
+                <li>{{ direccion.direccion }}, {{ direccion.comuna.nombre }}, {{ direccion.region.nombre }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="detalle_item">
+        <strong>Tipo:</strong> {{ cancha.tipo_cancha }}
+    </div>
+    <div class="detalle_item">
+        <strong>Capacidad:</strong> {{ cancha.capacidad }}
+    </div>
+    <div class="detalle_item">
+        <strong>Disponibilidad:</strong>
+        <ul>
+            {% for disponibilidad in disponibilidades %}
+                <li>{{ disponibilidad.dia_semana }}: {{ disponibilidad.horaapertura }} - {{ disponibilidad.horacierre }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="detalle_item">
+        <strong>Precio por Hora:</strong> {{ cancha.precio }} €
+    </div>
+    <div class="detalle_item">
+        <strong>Imágenes:</strong>
+        <ul class="listaDeimagenCanchas">
+            {% for imagen in imagenes %}
+            <li class="cancha-imagen-item">
+                <img src="{{ imagen.imagen.url }}" alt="Imagen de {{ cancha.nombre }}" class="cancha-imagen" />
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="detalle_item">
+        <strong>Descripción:</strong> {{ cancha.descripcion }}
+    </div>
+    <div class="detalle_item">
+        <strong>Sub Descripción:</strong> {{ cancha.subdescripcion }}
+    </div>
+</div>
+
+<div class="detalle_item_administrar">
+        
+        <a href="{% url 'administrador:dashboard_cancha_modificar' cancha.id_cancha %}" class="btn_editar">
+            <i class="fas fa-edit"></i>
+            Editar
+        </a>
+        <a href="{% url 'administrador:dashboard_cancha_eliminar' cancha.id_cancha %}" class="btn_eliminar" onclick="return confirmarEliminacion(event, this);">
+            <i class="fas fa-trash-alt"></i>
+            Eliminar
+        </a><script>
+            function confirmarEliminacion(event, element) {
+                event.preventDefault();
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esta acción no se puede deshacer.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'No, cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = element.href;
+                    }
+                });
+            }
+            </script>
+</div>

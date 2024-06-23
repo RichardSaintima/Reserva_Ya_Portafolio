@@ -1,0 +1,49 @@
+.solicitud{
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    justify-content: space-around;
+}
+.icono-solicitud{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icono-solicitud i{
+    font-size: 50px;
+}
+.informacion-solicitud{
+    width: 30%;
+}
+.botones-solicitud{
+    display: flex;
+    flex-direction: column;
+    
+}
+.botones-solicitud button{
+    margin: 15px;
+    border: none;
+    cursor: pointer;
+    text-wrap: nowrap;
+    width: 90%;
+    font-weight: bold;
+}
+.botones-solicitud a{
+    margin: 15px;
+    border: none;
+    cursor: pointer;
+    text-wrap: nowrap;
+    width: 90%;
+    font-weight: bold;
+}
+
+.solicitud p{
+    font-weight: bold;
+    font-size: 17px;
+}
+.solicitud span{
+    font-weight: 500;
+}

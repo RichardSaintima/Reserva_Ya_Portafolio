@@ -1,0 +1,8 @@
+{% load static %} 
+<div class="card_details_table">
+    <br><h3 class="dashboard_cancha_titulo">Informe Inventario</h3><br>
+    <canvas id="informeInventario"></canvas>
+</div>
+<script>
+    const inventarioData = JSON.parse('{{ cancha_data|safe|escapejs }}');
+</script>

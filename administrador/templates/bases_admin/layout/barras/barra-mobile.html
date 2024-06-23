@@ -1,0 +1,32 @@
+<!-- menu--open -->
+<div class="menu-mobile" id="menuMobile" style="display: none">
+  {% load static %}
+  <div class="menuMovil">
+    <div class="searchMovil">
+      <input type="search" placeholder="Buscar" />
+      <button type="submit">
+        <img src="{% static 'img/otros/search.png' %}" alt="LogoTipo" />
+      </button>
+    </div>
+    <nav class="navegacionMovil" id="nav">
+      <a href="/">Inicio</a>
+      <a href="{% url 'plantillas:categoria_cancha' %}">Categorias</a>
+      <a href="#">Mas Valorado</a>
+    </nav>
+  </div>
+
+  <div class="redesMovil">
+    <div class="socialesMovil">
+      <img src="{% static 'img/redes/facebook.svg' %}" alt="Facebook" />
+      <img src="{% static 'img/redes/twitter.svg' %}" alt="Twitter" />
+      <img src="{% static 'img/redes/instagram.svg' %}" alt="Instagram" />
+      <div class="reserva"></div>
+      <a href="{% url 'plantillas:reservar_hora' %}">
+        <img src="{% static 'img/otros/reservacion.svg' %}" alt="Reserva" />
+      </a>
+    </div>
+    <img id="usuarioMovil" src="{% static 'img/otros/user.svg' %}" alt="Usuario" />
+    <!-- Submenu  de Usuario -->
+    {% include 'bases/layout/barras/barra-usuario.html' %}
+  </div>
+</div>

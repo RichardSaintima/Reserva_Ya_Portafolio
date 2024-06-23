@@ -1,0 +1,71 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include 'bases/components/alertas.html' %}
+<div class="dashboard_cancha_formulario sacarBox">
+    <header class="cancha_header">
+        <a href="{% url 'plantillas:dashboard_historial' %}" class="btn_header">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+    </header>
+    <br><h3 class="dashboard_cancha_titulo">Detalles del Usuario</h3><br>
+
+    <div class="cancha_detalle_contenido normalUser">
+        <label class="texto_orden" for=""> Detalle Usuario:</label>
+        <div class="detalle_item">
+            <strong>Nombres:</strong> {{ cancha.user.first_name }} {{ cancha.user.last_name }}
+        </div>
+        <div class="detalle_item">
+            <strong>Email:</strong> {{ cancha.user.email }}
+        </div>
+        <div class="detalle_item">
+            <strong>Telefono:</strong> {{ cancha.user.phone }}
+        </div>
+        <label class="texto_orden" for=""> Detalle Reservacion:</label>
+        <div class="detalle_item">
+            <strong>Nombre Cancha:</strong> {{ cancha.nombre }}
+        </div>
+        <div class="detalle_item">
+            <ul>
+                {% for direccion in direcciones %}
+                    <li>{{ direccion.direccion }}, {{ direccion.comuna.nombre }}, {{ direccion.region.nombre }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="detalle_item">
+            <strong>Capacidad:</strong> {{ cancha.capacidad }}
+        </div>
+        <div class="detalle_item">
+            <strong>Tiempo Reservacion:</strong>
+            <ul>
+                {% for disponibilidad in disponibilidades %}
+                    <li>{{ disponibilidad.dia_semana }}: {{ disponibilidad.horaapertura }} - {{ disponibilidad.horacierre }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="detalle_item">
+            <strong>Estado:</strong> {{ estado_reservas }}
+        </div>
+    </div>
+
+    <div class="detalle_item_administrar normalUser">
+            
+            <a href="{% url 'plantillas:dashboard_comunicacion' cancha.id_cancha %}" class="btn_editar">
+                <i class="fa-solid fa-envelope"></i>
+                Enviar Mensaje
+            </a>
+            <a href="{% url 'plantillas:reservar_hora' cancha.id_cancha %}" class="btn_editar">
+                <i class="fa-solid fa-check"></i>
+                Volver a Reservar
+            </a>
+            <a href="" class="btn_eliminar">
+                <i class="fa-solid fa-ban"></i>
+                Cancelar Reservacion
+            </a>
+    </div>
+</div>
+
+{% endblock %}

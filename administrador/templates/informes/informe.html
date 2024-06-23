@@ -1,0 +1,66 @@
+{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_main">
+  <header class="main_header">
+    <div class="user_info">
+      {% if usuario.profile_image %}
+        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+      {% else %}
+              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+      {% endif %}
+        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+    </div>
+</header>
+
+  <section class="main_content">
+    <div class="summary_cards">
+      <div class="card" onclick="toggleDetails('informe_ventas')">
+        <h3>Imforme de Ventas</h3>
+        <p>{{total_precios_reservas}}</p>
+      </div>
+      <div class="card" onclick="toggleDetails('informe_cancha_inventario')">
+        <h3>Imforme de Inventario</h3>
+        <p>{{cantidad_canchas}}</p>
+      </div>
+      <div class="card" onclick="toggleDetails('informe_nuevas_ordenes')">
+        <h3>Imforme Órdenes</h3>
+        <p>{{reservas}}</p>
+      </div>
+    </div>
+
+    <div class="table_section">
+
+      <div class="card_details" id="informe_nuevas_ordenes">
+        <h2>Resumen de Ordenes</h2>
+        {% include 'informes/detalle/orden/detalles_ordenes.html' %}
+        {% include 'informes/detalle/orden/detalles_ordenes_semestral.html' %}
+      </div>
+      <div class="card_details" id="informe_ventas">
+        <h2>Resumen de Ventas</h2>
+        {% include 'informes/detalle/ventas/detalles_ventas_mensual.html' %}
+        {% include 'informes/detalle/ventas/detalles_ventas_semestral.html' %}
+      </div>
+      <div class="card_details" id="informe_cancha_inventario">
+        <h2>Resumen de Inventario</h2>
+        {% include 'informes/detalle/detalles_inventario.html' %}
+      </div>
+      <div  id="table_seccion_resumen">
+        <h2>Resumen de los imformes</h2>
+        
+        <div class="card_details_table">
+            <br><h3 class="dashboard_cancha_titulo">Informe Mensual</h3><br>
+            <canvas id="informeMensual"></canvas>
+        </div>
+      <script>
+        const ventasDiariasGeneral = JSON.parse('{{ ventas_data|escapejs }}');
+        const dayOfMonthGeneral = JSON.parse('{{ day_of_month }}');
+        const canchaDataGeneral = JSON.parse('{{ cancha_data|escapejs }}');
+        const ordenDataGeneral = JSON.parse('{{ orden_data|escapejs }}');
+      </script>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+{% endblock %}

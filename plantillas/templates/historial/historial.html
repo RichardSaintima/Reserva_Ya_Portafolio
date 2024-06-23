@@ -1,0 +1,47 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block content%}
+  {% include 'bases/components/alertas.html' %}
+  <div class="dashboard_main">
+    <section class="main_content">
+    <br><h3 class="dashboard_cancha_titulo">Historial de pedidos</h3><br>
+      {% for fecha in fechas_reservas %}
+        <div class="table_section">
+          <h2>{{ fecha }}</h2>
+          <table class="summary_table">
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Cancha</th>
+                <th>Estado</th>
+                <th>Detalles</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for reserva in reservas %}
+                {% if reserva.fecha == fecha %}
+                  <tr>
+                    <td>
+                      <img class="FotoProducto" src="{% static 'img/otros/logo.png' %}" alt="LogoTipo" />
+                    </td>
+                    <td>{{ reserva.cancha.nombre|slice:":20" }}</td>
+                    <td>{% if reserva.estado %}Finalizado{% else %}En Curso{% endif %}</td>
+                    <td>Orden #{{ reserva.id_reserva }}</td>
+                    <td>
+                      <a href="{% url 'plantillas:dashboard_historial_administrar' reserva.cancha.id_cancha  %}" class="btn_detalle">
+                        <i class="fa-solid fa-gears"></i>
+                        Detalles
+                      </a>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endfor %}
+    </section>
+  </div>
+{% endblock %}

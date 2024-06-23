@@ -1,0 +1,18 @@
+INSERT INTO administrador_tipo_cancha (nombre, foto, descripcion, cantidad_cancha, categoria_tipo_cancha) VALUES
+('Fútbol', 'img/categorias/futbol.jpg', 'Reserva una cancha para jugar fútbol con tus amigos.', 99, 'Jugar con pies'),
+('Tenis', 'img/categorias/tenis.jpg', 'Reserva una cancha de tenis para jugar con tus amigos.', 99, 'Jugar con raqueta'),
+('Squash', 'img/categorias/squash.jpg', 'Reserva una pista de squash para jugar con tus amigos.', 99, 'Jugar con raqueta'),
+('Baloncesto', 'img/categorias/baloncesto.jpg', 'Reserva una cancha de baloncesto para jugar con tus amigos.', 99, 'Jugar con manos'),
+('Voleibol', 'img/categorias/voleibol.jpg', 'Reserva una cancha de voleibol para jugar con tus amigos.', 99, 'Jugar con manos'),
+('Fútbol sala', 'img/categorias/futsal.jpg', 'Reserva una cancha de fútsal para jugar con tus amigos.', 99, 'Jugar con pies'),
+('Pádel', 'img/categorias/padel.jpg', 'Reserva una pista de pádel para jugar con tus amigos.', 99, 'Jugar con raqueta'),
+('Frontón', 'img/categorias/fronton.jpg', 'Reserva una cancha de frontón para jugar con tus amigos.', 99, 'Jugar con raqueta'),
+('Golf', 'img/categorias/golf.jpg', 'Reserva un campo de golf para jugar con tus amigos.', 99, 'Jugar con palos'),
+('Atletismo', 'img/categorias/atletismo.jpg', 'Reserva un campo de atletismo para correr con tus amigos.', 99, 'Físicos'),
+('Beisbol', 'img/categorias/beisbol.jpg', 'Reserva un campo de béisbol para jugar con tus amigos.', 99, 'Jugar con palos'),
+('Boxeo', 'img/categorias/boxeo.jpg', 'Reserva un ring de boxeo para pelear con tus amigos.', 99, 'Físicos'),
+('Ciclismo', 'img/categorias/ciclismo.jpg', 'Reserva una pista de ciclismo para pedalear con tus amigos.', 99, 'Físicos'),
+('Esquí', 'img/categorias/esqui.jpg', 'Reserva una pista de esquí para jugar con tus amigos.', 99, 'Físicos'),
+('Hockey De Hielo', 'img/categorias/hockeyDeHielo.jpg', 'Reserva un campo de hockey de hielo para jugar con tus amigos.', 99, 'Jugar con palos'),
+('Natación', 'img/categorias/natacion.jpg', 'Reserva una piscina de natación para nadar con tus amigos.', 99, 'Físicos'),
+('Rugby', 'img/categorias/rugby.jpg', 'Reserva un campo de rugby para jugar con tus amigos.', 99, 'Físicos');

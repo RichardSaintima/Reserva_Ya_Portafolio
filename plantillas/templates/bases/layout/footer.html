@@ -1,0 +1,29 @@
+{% load static %}
+<footer id="footer" class="footer">
+  <div class="footer-primero">
+    <div class="footer-contacto">
+        <p>Contactanos:</p>
+      <nav class="footer-redes">
+        <a href="https://www.facebook.com/">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://twitter.com/">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </nav>
+    </div>
+    <div class="navegacion" id="nav">
+      <a href="{% url 'plantillas:sobre_mi' %}">Sobre Nosotros</a>
+      <p>/</p>
+      <a  href="{% url 'plantillas:ayuda' %}">Ayuda</a>
+    </div>
+  </div>
+
+  <div class="footer-copyright">
+    <a href="{% url 'plantillas:termino_uso' %}">Terminos de Uso</a>
+    <a href="{% url 'plantillas:politica_privacidad' %}"> Politica de Privacidad</a>
+  </div>
+</footer>

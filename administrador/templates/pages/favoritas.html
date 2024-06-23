@@ -1,0 +1,56 @@
+{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_main">
+  <header class="main_header">
+    <div class="user_info">
+      {% if usuario.profile_image %}
+        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+      {% else %}
+              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+      {% endif %}
+        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+    </div>
+</header>
+
+{% if canchas_con_imagenes %}
+<section class="main_favoritas">
+  <br><h3 class="dashboard_cancha_titulo">Mis Favoritas</h3><br>
+  <div class="seccion-favoritas">
+      {% for item in canchas_con_imagenes %}
+          <div class="card-favoritas">
+              <div class="image-container">
+                  {% if item.primera_imagen %}
+                      <img src="{{ item.primera_imagen.imagen.url }}" alt="Imagen de la cancha deportiva">
+                  {% endif %}
+                  <div class="rating">
+                      {% if item.avg_calificacion %}
+                          <span>
+                              <i class="fa fa-star"></i>
+                              {{ item.avg_calificacion|floatformat:1 }}
+                          </span>
+                      {% else %}
+                          <span>N/A</span>
+                      {% endif %}
+                  </div>
+              </div>
+              <div class="card-favoritas-info">
+                  <h2 class="title">{{ item.cancha.nombre }}</h2>
+                  <p class="description">{{ item.cancha.descripcion }}</p>
+                  <p class="price">${{ item.cancha.precio }} CLP hora.</p>
+                  <a class="like-button sacarFovirotos" data-url="{% url 'plantillas:cambiar_favorito' item.cancha.id_cancha %}">
+                      <i class="fa-solid fa-heart-crack"></i> Eliminar
+                  </a>
+              </div>
+          </div>
+      {% endfor %}
+  </div>
+</section>
+{% else %}
+  <div class="no_favoritas">
+    <br><h3 class="dashboard_cancha_titulo">No tienes canchas favoritas</h3>
+  </div>
+{% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "bases_admin/base_admin.html" %}
+{% load static %} 
+
+{% block content%}
+
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_cancha">
+    <h3 class="dashboard_cancha_titulo">Administración de Canchas</h3>
+    <header class="cancha_header">
+        <a href="{% url 'administrador:dashboard_cancha_agregar' %}" class="btn_header">
+            <i class="fas fa-plus"></i>
+            Agregar Cancha
+        </a>
+    </header>
+    <section class="cancha_content">
+        <div class="table_section_cancha">
+            <h2>Resumen de Actividad</h2>
+            <table class="summary_table_cancha">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Administrar</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cancha in canchas %}
+                    <tr>
+                        <td>
+                            {% with cancha.imagenes.first as primera_imagen %}
+                                {% if primera_imagen %}
+                                    <img class="FotoProductocancha" src="{{ primera_imagen.imagen.url }}" alt="LogoTipo" />
+                                {% endif %}
+                            {% endwith %}
+                        </td>
+                        <td class="cancha_nombre"> {{ cancha.nombre|slice:":20" }}</td>
+                        <td>{{ cancha.tipo_cancha }}</td>
+                        <td>
+                            <a href="{% url 'administrador:dashboard_cancha_administrar' cancha.id_cancha %}" class="btn_detalle">
+                                <i class="fa-solid fa-gears"></i>
+                                Detalles
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'administrador:dashboard_cancha_modificar' cancha.id_cancha %}" class="btn_editar">
+                                <i class="fas fa-edit"></i>
+                                Editar
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'administrador:dashboard_cancha_eliminar' cancha.id_cancha %}" class="btn_eliminar" onclick="return confirmarEliminacion(event, this);">
+                                <i class="fas fa-trash-alt"></i>
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div><script>
+    function confirmarEliminacion(event, element) {
+        event.preventDefault();
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Esta acción no se puede deshacer.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'No, cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = element.href;
+            }
+        });
+    }
+    </script>
+
+{% endblock %}

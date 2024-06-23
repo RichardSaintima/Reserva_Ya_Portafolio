@@ -1,0 +1,76 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block content %}
+    {% include 'bases/components/alertas.html' %}
+    <div class="comentar-general">
+        <div class="calificar-cancha">
+            <h2>Calificar Cancha</h2>
+            <form id="calificar-form" method="post" action="{% url 'plantillas:comentario' cancha.id_cancha %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="descripcion-cancha">
+                        {% with cancha.imagenes.first as primera_imagen %}
+                        {% if primera_imagen %}
+                            <img class="FotoProductocancha" src="{{ primera_imagen.imagen.url }}" alt="LogoTipo" />
+                        {% endif %}
+                        {% endwith %}
+                        <label for="nombre_cancha">Nombre de la Cancha: <span> <a href="">{{ cancha.nombre }}</a></span></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="calificacion">Calificación:</label>
+                    <div class="estrellas" id="calificacion">
+                        <span class="estrella" data-value="1">&#9733;</span>
+                        <span class="estrella" data-value="2">&#9733;</span>
+                        <span class="estrella" data-value="3">&#9733;</span>
+                        <span class="estrella" data-value="4">&#9733;</span>
+                        <span class="estrella" data-value="5">&#9733;</span>
+                    </div>
+                    <input type="hidden" id="calificacion_seleccionada" name="calificacion" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="titulo">Título del Comentario:</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Ej: El Pepe le gusta ." required>
+                </div>
+                <div class="form-group">
+                    <label for="comentario">Comentario:</label>
+                    <textarea id="comentario" name="comentario" maxlength="200" required></textarea>
+                    <p id="charCount">0/200 caracteres</p>
+                </div>                
+                <div class="form-group">
+                    <label for="recomendar">¿Recomendarías esta cancha?</label>
+                    <select id="recomendar" name="recomendar" required>
+                        <option value="si">Sí</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                {% if request.user.is_authenticated %}
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" value="{{ request.user.username }}" readonly>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ej: Tu eres Pepe 😎🤔" required>
+                    </div>
+                {% endif %}
+                
+                {% if request.user.is_authenticated %}
+                    <div class="form-group">
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo" value="{{ request.user.email }}" readonly>
+                    </div>
+                {% else %}
+                    <div class="form-group">
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo" placeholder="example@exampple.com" required>
+                    </div>
+                {% endif %}
+            
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

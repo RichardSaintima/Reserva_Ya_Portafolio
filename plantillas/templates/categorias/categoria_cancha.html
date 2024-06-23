@@ -1,0 +1,37 @@
+{% extends "bases/base.html" %}
+{% load static %} 
+
+{% block content%}
+{% include 'bases/components/alertas.html' %}
+
+<div class="filter-container">
+    <label for="filter">Filtrar por deporte:</label>
+    <select id="filter" onchange="filtrarCategorias()">
+        <option value="todos">Todos</option>
+        {% for tipo in tipos_deportes %}
+        <option value="{{ tipo }}">{{ tipo }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="categoria-categorias">
+    {% for categoria in categorias %}
+    <a href="{% url 'plantillas:buscar_canchas' %}?q={{ categoria.nombre }}">
+        <div class="categoria" data-deporte="{{ categoria.categoria_tipo_cancha }}">
+            <img src="{% static categoria.foto %}" alt="{{ categoria.nombre }}" class="categoria-image">
+            <div class="categoria-content">
+                <h3>{{ categoria.nombre }}</h3>
+                <p>{{ categoria.descripcion }}</p>
+            </div>
+            {% for cantidad_cancha_dict_item in cantidad_cancha_dict %}
+                {% if cantidad_cancha_dict_item.categoria == categoria %}
+                    <p class="categoria-disponible">+{{ cantidad_cancha_dict_item.cantidad }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}
+   

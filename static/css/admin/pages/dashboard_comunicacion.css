@@ -1,0 +1,231 @@
+.main_content_contacto {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.chat_container {
+    display: flex;
+    flex-direction: column;
+    height: 80vh; /* Tamaño específico del área de chat */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chat_main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.chat_header {
+    background: #1081f9;
+    color: white;
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.chat_messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+}
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0;
+    display: flex;
+    background-color: #007BFF;
+    justify-content: center;
+    color: white;
+    padding: 10px 20px;
+    width: 30%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.fileUpload:hover {
+    background-color: #0056b3;
+}
+.chat_input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background: white;
+    position: relative; /* Para posicionar la vista previa */
+}
+.aceptarfile {
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.image_button {
+    font-size: 1.5em;
+    margin-right: 10px;
+    align-self: center;
+    cursor: pointer;
+}
+.file_name {
+    flex: 1;
+    margin-right: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #0b2a36;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.mostrarfile {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    background: white;
+    position: relative; /* Para posicionar la vista previa */
+}
+.file_icon{
+    font-size: 1.5em;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #0abaff;
+}
+#message_input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    resize: none; /* Evita que el usuario redimensione manualmente */
+    min-height: 40px; /* Altura mínima del textarea */
+    max-height: 200px; /* Altura máxima del textarea */
+}
+#message_input::-webkit-scrollbar {
+    width: 0.7rem;
+    background-color: transparent;
+}
+
+#message_input::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+#message_input::-webkit-scrollbar-thumb {
+    background-color: #0075a4;
+    border-radius: 0.5rem;
+}
+#message_input:focus {
+    outline: none;
+    border-color: #0abaff;
+}
+
+#send_button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+#send_button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    max-width: 70%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+.message.sent {
+    align-self: flex-end;
+    background-color: #c6e4f8;
+    text-align: right;
+}
+
+.message.received {
+    align-self: flex-start;
+    background-color: #ECECEC;
+    text-align: left;
+}
+
+.message p {
+    margin: 0;
+}
+
+.timestamp {
+    font-size: 0.75em;
+    color: gray;
+    position: absolute;
+    bottom: -15px;
+    right: 10px;
+}
+
+.sent_image, .preview_image {
+    max-width: 100px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.preview_image {
+    max-width: 100px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.preview_container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    position: absolute;
+    bottom: 60px; 
+}
+
+.preview_container img {
+    max-width: 100px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .chat_container {
+        flex-direction: row;
+    }
+    .main_content_contacto {
+        box-shadow: none;
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .chat_main {
+        width: 70%;
+    }
+}
+
+@media (max-width: 500px) {
+    .chat_header {
+        text-align: center;
+    }
+    .main_content_contacto {
+        box-shadow: none;
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .fileUpload {
+        width: 100%;
+        margin: 0;
+    }
+}

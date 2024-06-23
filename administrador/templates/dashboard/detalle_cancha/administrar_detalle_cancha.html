@@ -1,0 +1,20 @@
+{% extends "bases_admin/base_admin.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_cancha_formulario">
+    <header class="cancha_header">
+        <a href="{% url 'administrador:dashboard' %}" class="btn_header">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+    </header>
+    <br><h3 class="dashboard_cancha_titulo">Detalles de la Cancha</h3><br>
+
+    {% include 'dashboard/detalle_cancha/contenido_cancha.html' %}
+
+</div>
+
+{% endblock %}

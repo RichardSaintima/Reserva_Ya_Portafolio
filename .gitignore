@@ -1,0 +1,7 @@
+mi_entorno/
+node_modules/
+vendor/
+.vscode/
+.DS_store
+.env 
+__pycache__/

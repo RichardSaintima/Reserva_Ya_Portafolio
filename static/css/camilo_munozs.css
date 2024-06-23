@@ -1,0 +1,42 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    height:50vh; /* Ocupa toda la altura de la ventana */
+    margin: 0 auto;
+    overflow: hidden;
+}
+.carousel img {
+    display: none;
+    width: 100%;
+    height: 100%; /* Ocupa toda la altura del contenedor */
+    object-fit: cover;
+}
+.control-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background-color: transparent; /* Fondo semitransparente */
+    color: #fff;
+    border: none;
+    border-radius: 45%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+#retroceder {
+    left: 10px;
+}
+#avanzar {
+    right: 10px;
+}
+.control-btn:hover {
+    background-color: rgba(0, 123, 255, 1); /* Fondo más oscuro al pasar el cursor */
+}
+
+
+@media only screen and (max-width:768px) {
+    .carousel {
+        height: 40vh; /* Ocupa la mitad de la altura de la ventana */
+    }
+}

@@ -1,0 +1,194 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block content%}
+{% include 'bases/components/alertas.html' %}
+
+<div id="general">
+    <div id="contenedor">
+        <div class="carousel-bloque">
+            <h2 class="title">{{ cancha.nombre }}</h2>
+            <div class="carouseldetalle">
+                <i class="fa-solid fa-chevron-left control-btn" id="retroceder"></i>
+                {% for imagen in imagenes %}
+                <img class="imagen" src="{{ imagen.imagen.url }}" alt="Imagen">
+                {% endfor %}
+                <i class="fa-solid fa-angle-right control-btn" id="avanzar"></i>
+            </div>
+            <article class="detalle">
+                <h3>{{ cancha.direccion }}</h3>
+                <div class="descripcion-empresa">
+                    <p class="descripcion-actividad">{{ cancha.descripcion }}</p>
+                    <p class="ver-mas">Ver más</p>
+                </div> 
+                <h3>Descripción</h3>
+                <div class="descripcion-empresa">
+                    <p class="descripcion-actividad">{{ cancha.subdescripcion }}</p>
+                    <p class="ver-mas">Ver más</p>
+                </div>  
+            </article>
+        </div>
+        <div id="contenedordispo"><!-- contenedor completo -->
+            <div id="contenedormesdia"><!-- contenedor meses y dias -->
+                <div id="mesesytitulo"><!-- contenedor meses y titulo -->   
+                    <div><!-- contenedor titulo -->
+                        <div><h2>Dias y Horas servicios</h2> </div>
+                    </div><!-- contenedor titulo -->
+                    <label>${{cancha.precio}} Por hora</label>
+                </div><!-- contenedor meses y titulo -->
+                <div id="diaYHora"><!--Dia-->
+                    {% for dispo in disponibilidad %}
+                        <div id="nombredia">
+                            <p>{{ dispo.dia_semana }}</p>
+                            <p>{{ dispo.horaapertura }} - {{ dispo.horacierre }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div><!-- contenedor meses y dias -->
+            <!-- Botón de reserva -->
+            <a id="mesesytitulo" class="boton-reserva" href="{% url 'plantillas:reservar_hora' cancha.id_cancha %}">
+                Reservar
+            </a>
+        </div><!-- contenedor completo -->
+    </div>
+
+    <div class="contenedor-resumen">
+        <aside class="resunem-comentario">
+            <!-- resumen de comentario -->
+            <h2 class="titulo">Resumen de Comentarios</h2>
+            <div id="resumen">
+                <div class="resumen-comentarios">
+                    <div class="">
+                        <p>
+                            {% for i in "12345" %}
+                                {% if avg_calificacion|floatformat:"0" >= i %}
+                                    <i class="fa-solid fa-star" style="color: #f7b500;"></i>
+                                {% else %}
+                                    <i class="fa-solid fa-star" style="color: #0790f88e;"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                        
+                        <p>
+                            {{ avg_calificacion|floatformat:1 }} ({{ num_comentarios }} reseñas)
+                        </p>
+                    </div>
+                    <a class="resumen-IrComentar" href="{% url 'plantillas:comentario' cancha.id_cancha %}">
+                        Deja tu comentario
+                    </a>
+                    <h2>Evaluado por {{ num_comentarios }} clientes</h2> 
+                </div>
+                <div id="resumen-calificacion">
+                    {% for calificacion  in calificaciones_por_estrella %}
+                        <div class="calificacion">
+                            <p>{{ calificacion.calificacion }} estrellas</p>
+                            <input class="rangoCalificacion" type="range" name="rangoCalificacion" value="{{ calificacion.count }}" min="0" max="{{ num_comentarios }}" readonly disabled>
+                            <p>{{ calificacion.count }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </aside>
+        
+        {% if comentarios|length > 0 %}
+            <aside>
+                <!-- Área de Comentarios -->
+                <h2 class="titulo">Opinión de Cliente</h2>
+                <div id="comentarios">
+                    {% for comentario in comentarios|slice:":3" %}
+                        <div class="comentario">
+                            <div>
+                                <div>
+                                    <p>
+                                        {% for i in "12345" %}
+                                            {% if comentario.calificacion|floatformat:"0" >= i %}
+                                                <i class="fa-solid fa-star" style="color: #f7b500;"></i>
+                                            {% else %}
+                                                <i class="fa-solid fa-star" style="color: #0790f88e;"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="detallecomentario">{{ comentario.comentario }}</p>
+                                </div>
+                            </div>
+                            <div class="quien-fue">
+                                <p><strong>{{ comentario.nombre_persona }}</strong></p>
+                                <p class="fecha">Enviado <span>{{ comentario.fecha|timesince }}</span></p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if comentarios|length > 3 %}
+                    <button class="verMasComentarios" id="verMasComentarios" onclick="mostrarMasComentarios()">Ver más</button>
+                    <button class="verMasComentarios"  id="verMenosComentarios" onclick="mostrarMenosComentarios()" style="display:none;">Ver menos</button>
+                {% endif %}
+            </aside>
+            <script>
+                let comentarios = JSON.parse('{{ comentarios_json|escapejs }}');
+            </script>
+        {% else %}
+            <br>
+        {% endif %}
+    </div>
+    
+        {% if canchas_recomendadas %}
+        <aside class="cancha-recomendado">
+            <!-- canchas recomendadas -->
+            <h2 class="titulo">Tal vez te guste estos deportes</h2>
+            <div class="canchas-recomendadas-container">
+                <div class="canchas-recomendadas">
+                    {% for cancha in canchas_recomendadas %}
+                        <a class="categoria" href="{% url 'plantillas:detalle_cancha' cancha.id_cancha %}">
+                            {% with cancha.imagenes.first as primera_imagen %}
+                                {% if primera_imagen %}
+                                    <img src="{{ primera_imagen.imagen.url }}" alt="Imagen de la cancha deportiva">
+                                {% endif %}
+                            {% endwith %}
+                            <div class="categoria-content">
+                                <h3>{{ cancha.nombre }}</h3>
+                                <p>{{ cancha.descripcion }}</p>
+                                <p>${{ cancha.precio }} CLP hora.</p>
+                            </div>
+                        </a> 
+                    {% endfor %}
+                </div>
+            </div>
+        </aside>
+        {% endif %}
+    
+
+
+        <aside class="sobreEmpresa">
+            <!-- Sobre la empresa que tiene la cancha -->
+            <h2 class="titulo">Sobre la empresa</h2>
+            <div class="">
+                <h2 class="subtitulo">Descripción de la empresa:</h2>
+                <div class="descripcion-empresa">
+                    <p class="descripcion-actividad">
+                        Lore elit. Similique dolendis eligend Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae, quos? Porro blanditiis praesentium provident, rerum delectus atque sunt magnam dolore obcaecati quos ratione illum asperiores facere ea, animi mollitia voluptate. i magnam re exercitationem ipsum eum itaque! Possimus commodi minima nemo. adipiscing elit. Sed faucibus, libero nec pretium accumsan, justo nisi facilisis quam, nec lacinia nulla ex nec odio. Duis vel dui id ipsum pulvinar fringilla ac vel augue.
+                    </p>
+                    <p class="ver-mas">Ver más</p>
+                </div>    
+            </div>
+            
+        <div id="ubicación">
+            {% include 'canchas/mapa.html' %}
+        </div>
+            <div class="redes-actividad">
+                <h2 class="subtitulo">Redes</h2>
+                <div class="">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-solid fa-globe"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </aside>   
+    </div>
+
+</div> <!-- General -->
+
+{% endblock %}

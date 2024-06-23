@@ -1,0 +1,24 @@
+{% extends "bases_admin/base_admin.html" %}
+{% load static %} 
+
+{% block content %}
+
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_cancha_formulario">
+    <header class="cancha_header">
+        <a href="{% url 'administrador:dashboard_cancha' %}" class="btn_header">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+    </header>
+    <br><h3 class="dashboard_cancha_titulo">Modificar Cancha</h3><br>
+    <form method="post" action="{% url 'administrador:dashboard_cancha_modificar' cancha.id_cancha %}" id="miFormulario" class="cancha_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'canchas/formulario_canchas.html' %}
+        <div class="form_group">
+            <button type="submit" class="btn_submit">Modificar Cancha</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

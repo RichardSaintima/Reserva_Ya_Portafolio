@@ -1,0 +1,55 @@
+{% extends "bases_admin/base_admin.html" %}
+{% load static %}
+
+{% block content %}
+{% include 'bases_admin/components/alertas.html' %}
+
+<div class="dashboard_main">
+    {% if user.is_authenticated %}
+    <header class="main_header">
+        <div class="user_info">
+            {% if usuario.profile_image %}
+                <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+            {% else %}
+                <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+            {% endif %}
+            <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+        </div>
+    </header>
+    {% endif %}
+
+    <section class="main_content">
+      <br><h3 class="dashboard_cancha_titulo">Configuración de la Cuenta</h3><br>
+      {% if user.is_authenticated %}
+      <div class="config_section">
+          <h3>Seguridad de la Cuenta</h3>
+          <div class="security_options">
+              <a href="{% url 'administrador:dashboard_perfil' %}" class="btn_editar">
+                  <i class="fa-solid fa-key"></i>
+                  Cambiar Contraseña
+              </a>
+              <a href="javascript:void(0)" id="delete_account" class="btn_eliminar">
+                <i class="fa-solid fa-user-slash"></i>
+                Eliminar cuenta
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</section>
+</div>
+
+<!-- Modal de Confirmación -->
+<div id="delete_modal" class="modal">
+<div class="modal_content">
+    <span class="close_button">&times;</span>
+    <h2>Confirmar Eliminación de Cuenta</h2>
+    <p>¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</p>
+    <form method="post" action="{% url 'administrador:dashboard_configuracion' %}">
+        {% csrf_token %}
+        <button type="submit" id="confirm_delete_button" class="danger_button">Sí, eliminar cuenta</button>
+        <button type="button" class="cancel_button">Cancelar</button>
+    </form>
+</div>
+</div>
+
+{% endblock %}

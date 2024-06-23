@@ -1,0 +1,104 @@
+.help_section {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+.dashboard_cancha_titulo {
+    text-align: center;
+    color: #008bb0;
+    margin-bottom: 1rem;
+}
+.faq {
+    margin-bottom: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.faq h2 {
+    color: #333;
+    border-bottom: 1px solid #9dccff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.faq_item {
+    margin-bottom: 15px;
+}
+
+.faq_item h3 {
+    color: #555;
+    margin: 0;
+    cursor: pointer;
+}
+.faq_item h3:hover {
+    color: #3ab7ff;
+}
+.faq_item p {
+    margin: 5px 0 0 0;
+    color: #666;
+    display: none; /* Initially hide the answers */
+}
+
+.faq_item.active p {
+    display: block; /* Show the answer when the item is active */
+}
+.contact_section {
+    width: 80%;
+    margin: 0 auto;
+}
+.contact_section h2 {
+    color: #333;
+    border-bottom: 1px solid #9dccff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.contact_section p {
+    color: #666;
+}
+
+.ayudaForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.ayudaLabel {
+    margin: 10px 0 5px 0;
+    color: #007BFF;
+}
+
+.ayudaForm input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.ayudaForm input, .ayudaForm textarea {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.ayudaForm input:focus,.ayudaForm textarea:focus {
+    border-color: #0abaff;
+    outline: none;
+}
+.ayudaForm button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.ayudaForm button:hover {
+    background-color: #0056b3;
+}
+@media screen and (max-width: 780px) { 
+    .fap, .contact_section {
+        width: 100%;
+    }
+}

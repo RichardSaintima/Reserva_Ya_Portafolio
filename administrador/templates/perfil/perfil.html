@@ -1,0 +1,60 @@
+{% extends "bases_admin/base_admin.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_cancha_formulario">
+    <header class="cancha_header">
+        <div class="user_info">
+            {% if usuario.profile_image %}
+              <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+            {% else %}
+                    <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+            {% endif %}
+              <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+          </div>
+    </header>
+    <br><h3 class="dashboard_cancha_titulo">Detalles del Usuario</h3><br>
+
+    <div class="cancha_detalle_contenido">
+
+        <div class="detalle_item FotoPerfilEdit">
+            <strong>Foto Perfil:</strong>
+            <div class="imagenes_contenedor">
+                <div class="imagen_item">
+                {% if usuario.profile_image %}
+                    <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+                {% else %}
+                    <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+                {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="detalle_item">
+            <strong>Username:</strong> {{ usuario.username }}
+        </div>
+        <div class="detalle_item">
+            <strong>Nombres:</strong> {{ usuario.nombre }} {{ usuario.apellido }}
+        </div>
+        <div class="detalle_item">
+            <strong>Ubicación:</strong> {{ usuario.ubicacion }}
+        </div>
+        <div class="detalle_item">
+            <strong>Email:</strong> {{ usuario.email }}
+        </div>
+        <div class="detalle_item">
+            <strong>Telefono:</strong> {{ usuario.telephono }}
+        </div>
+    </div>
+
+    <div class="detalle_item_administrar">
+        <a href="{% url 'administrador:dashboard_perfil_modificar' %}" class="btn_editar">
+            <i class="fas fa-edit"></i>
+            Editar
+        </a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+<!-- HEADER -->
+<header>
+  <div class="header" id="mostrar">
+    <div class="menuHeader">
+      <img class="imgLogo" src="{% static 'img/otros/logo.png' %}" alt="LogoTipo" />
+
+      <nav class="navegacion" id="nav">
+        <a href="/">Inicio</a>
+        <p>/</p>
+        <a href="{% url 'plantillas:categoria_cancha' %}">Categorias</a>
+        <p>/</p>
+        <a href="{% url 'plantillas:mas_valorado' %}">Mas Valorado</a>
+      </nav>
+    </div>
+    <form action="{% url 'plantillas:buscar_canchas' %}" method="get">
+      <div class="search">
+          <input type="search" name="q" placeholder="Buscar Tipo, Nombre, etc " />
+          <button type="submit">
+              <img src="{% static 'img/otros/search.png' %}" alt="Buscar" />
+          </button>
+      </div>
+  </form>
+    
+    <div class="redes">
+      <div class="sociales">
+        <a href="{% url 'plantillas:dashboard_historial'%}">
+          <i class="fa-solid fa-bag-shopping iconoshopping"></i>
+        </a>
+      </div>
+      <i id="usuario" class="fa-regular fa-circle-user"></i>
+    </div>
+
+    <div class="header-mobile">
+      <img id="btnMenuMobile" src="{% static 'img/otros/menu.svg' %}" alt="Menú" />
+      <img id="btnCloseMenuMobile" src="{% static 'img/otros/cerrar.svg' %}" alt="Cerrar" style="display: none;"/>
+    </div>
+  </div>
+</header>
+
+<!-- HEADER -->
+
+<!-- Submenu  de Usuario -->
+{% include 'bases/layout/barras/barra-usuario.html' %}
+<!-- Submenu  de mobiles -->
+{% include 'bases/layout/barras/barra-mobile.html' %}

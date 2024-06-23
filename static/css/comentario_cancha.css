@@ -1,0 +1,91 @@
+/* Estilos para las estrellas de calificación */
+.estrella {
+    font-size: 50px;
+    cursor: pointer;
+    margin: 0 auto;
+    color: #0790f88e;
+}
+.estrella:hover {
+    color: orange;
+}
+/* Estilos para el formulario */
+.calificar-cancha {
+    width: 60%;
+    margin: 0 auto;
+}
+.comentar-general {
+    margin: 5%;
+}
+.calificar-cancha h2 {
+    color: #078ff8;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group > .estrellas {
+    margin: 0 auto;
+}
+.form-group > .descripcion-cancha a {
+    color: #078ff8;
+    text-decoration: underline;
+}
+.form-group > .descripcion-cancha a:hover {
+    color: #4c9aae;
+}
+.form-group > .descripcion-cancha {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+}
+.form-group > .descripcion-cancha > img {
+    width: 20%;
+    border-radius: 10px;
+}
+.calificar-cancha label {
+    display: block;
+    font-weight: bold;
+}
+
+.calificar-cancha input[type="text"],
+.calificar-cancha input[type="email"],
+.calificar-cancha textarea,
+.calificar-cancha select {
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.calificar-cancha input[type="text"]:focus,
+.calificar-cancha input[type="email"]:focus,
+.calificar-cancha textarea:focus,
+.calificar-cancha select:focus {
+    border-color: #0abaff;
+    outline: none;
+}
+.calificar-cancha button {
+    background-color: #078ff8;
+    color: white;
+    border: none;
+    padding: 1.5rem;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+.calificar-cancha button:hover {
+    background-color: #4c9aae;
+}
+#charCount {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+/* para moviles */
+@media (max-width: 768px) {
+    .calificar-cancha {
+        width: 90%;
+    }
+}

@@ -1,0 +1,23 @@
+{% extends "bases/base.html" %}
+{% load static %} 
+
+{% block content%}
+
+
+{% include 'bases/components/alertas.html' %}
+
+{% if canchas_con_imagenes %}
+<br><br><h3 class="dashboard_cancha_titulo">Buscar Canchas</h3><br><br>
+<div class="card-container">
+
+    {% include 'canchas/cards.html' %}
+
+</div>
+{% else %}
+<div class="nohay">
+        <h1>No se encontraron canchas</h1>
+</div>
+{% endif %}
+
+{% endblock %}
+   

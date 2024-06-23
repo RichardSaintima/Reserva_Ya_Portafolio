@@ -1,0 +1,164 @@
+.FotoProductocancha {
+    width: 5rem;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+.dashboard_cancha_titulo {
+    text-align: center;
+    color: #008bb0;
+    margin-bottom: 1rem;
+}
+.dashboard_cancha {
+    padding: 1rem;
+}
+.cancha_header {
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+}
+
+.btn_header {
+    padding: 1rem;
+    background-color: #0abaff;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: all .5s;
+}
+.btn_header:hover {
+    background-color: #008bb0;
+    transition: all .5s;
+}
+.btn_editar {
+    padding: .8rem;
+    background-color: #0abaff;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: all .5s;
+}
+.btn_editar:hover {
+    background-color: #008bb0;
+    transition: all .5s;
+}
+.btn_eliminar {
+    padding: .8rem;
+    background-color: #ff4d4d;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: all .5s;
+}
+.btn_eliminar:hover {
+    background-color: #ff3333;
+    transition: all .5s;
+}
+.btn_detalle {
+    padding: .8rem;
+    background-color: #0aefffce;
+    box-shadow: rgba(40, 56, 63, 0.1) 0px 1px 3px;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 5px;
+    transition: all .5s;
+}
+.btn_detalle:hover {
+    background-color: #008bb08a;
+    transition: all .5s;
+}
+.cancha_content {
+    margin-top: 1rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+}
+
+/*  */
+.listaDeimagenCanchas {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2%;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    padding: 10px; /* Opcional: para un poco de espacio interior */
+}
+
+/* Estilos para WebKit (Chrome, Edge, Safari) */
+.listaDeimagenCanchas::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento horizontal */
+    height: 8px; /* Altura de la barra de desplazamiento vertical, si la necesitas */
+}
+
+.listaDeimagenCanchas::-webkit-scrollbar-track {
+    background: transparent; /* Color del riel de la barra */
+}
+
+.listaDeimagenCanchas::-webkit-scrollbar-thumb {
+    background: #078ff8; /* Color del deslizador */
+    border-radius: 10px; /* Redondea las esquinas del deslizador */
+}
+
+.cancha-imagen-item {
+    display: inline-block; /* Mantiene los elementos en línea para desplazamiento horizontal */
+}
+
+.cancha-imagen {
+    width: 8rem; /* Ajusta el ancho a 8 rem */
+    height: 8rem; /* Ajusta la altura a 8 rem */
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    border-radius: 5px; /* Opcional: para bordes redondeados */
+    margin: 5px; /* Espacio entre imágenes */
+}
+
+.summary_cards {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+
+.table_section_cancha {
+    margin-top: 2rem;
+}
+
+.table_section_cancha h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.summary_table_cancha {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.summary_table_cancha th, .summary_table_cancha td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.summary_table_cancha th {
+    background-color: #f4f4f9;
+}
+
+.summary_table_cancha tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

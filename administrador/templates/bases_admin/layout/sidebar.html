@@ -1,0 +1,73 @@
+<aside class="dashboard_sidebar">
+    <nav class="dashboard_menu">
+        {% if not user.is_authenticated %}
+            <a href="{% url 'account_login' %}" class="dashboard__enlace">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                <span class="dashboard__menu-texto">
+                    Iniciar Sesión
+                </span>    
+            </a>
+        {% endif %}
+
+    {% if user.is_authenticated %}
+    
+        {% if user.is_staff %}
+            <a href="{% url 'administrador:dashboard' %}" class="dashboard__enlace">
+                <i class="fa-solid fa-square-poll-vertical dashboard__icono"></i>
+                <span class="dashboard__menu-texto">
+                    Dashboard
+                </span>    
+            </a>
+        {% endif %}
+        {% if user.is_staff %}
+            <a href="{% url 'administrador:dashboard_solicitudes' %}" class="dashboard__enlace">
+                <i class="fa-solid fa-building-user dashboard__icono"></i>
+                <span class="dashboard__menu-texto">
+                    Solicitudes
+                </span>    
+            </a>
+        {% endif %}
+
+        <a href="{% url 'administrador:dashboard_cancha' %}" class="dashboard__enlace" >
+            <i class="fa-solid fa-kaaba dashboard__icono"></i>
+            <span class="dashboard__menu-texto">
+                Canchas
+            </span>    
+        </a>
+
+        <a href="{% url 'administrador:dashboard_informe' %}" class="dashboard__enlace">
+            <i class="fa-solid fa-chart-line dashboard__icono"></i>
+            <span class="dashboard__menu-texto">
+                Informes
+            </span>    
+        </a>
+        <a href="{% url 'administrador:dashboard_ordenes' %}" class="dashboard__enlace">
+            <i class="fa-solid fa-border-all dashboard__icono"></i>
+            <span class="dashboard__menu-texto">
+                Ordenes
+            </span>    
+        </a>
+
+        <a href="{% url 'administrador:dashboard_favorita' %}" class="dashboard__enlace" >
+            <i class="fa-regular fa-star dashboard__icono"></i>
+            <span class="dashboard__menu-texto">
+                Favoritos
+            </span>    
+        </a>
+
+        <a href="{% url 'administrador:dashboard_perfil' %}" class="dashboard__enlace" >
+            <i class="fa-solid fa-address-card dashboard__icono"></i>
+            <span class="dashboard__menu-texto">
+                Perfil
+            </span>    
+        </a>
+
+        <a href="{% url 'administrador:dashboard_configuracion' %}" class="dashboard__enlace" >
+            <i class="fa-solid fa-gears dashboard__icono"></i>
+            <span class="dashboard__menu-texto">
+                Configuración
+            </span>    
+        </a>
+    {% endif %}
+    </nav>
+</aside>

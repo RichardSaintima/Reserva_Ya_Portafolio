@@ -1,0 +1,37 @@
+.about_section {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.about_section h2 {
+    color: #333;
+    border-bottom: 1px solid #459fff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.about_section p, .about_section ul {
+    color: #666;
+    line-height: 1.6;
+}
+
+.about_section ul {
+    list-style: disc inside;
+    padding-left: 0;
+}
+
+.about_section ul li {
+    margin-bottom: 10px;
+}
+.intro, .features, .mission {
+    width: 80%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 780px) { 
+    .intro, .features, .mission {
+        width: 100%;
+    }
+}

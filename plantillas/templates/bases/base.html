@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Los Estilos  -->
+    {% include "bases/components/_styles.html" %}
+    <link rel="icon" type="image/png" href="{% static 'img/otros/logo.png' %}" />
+    <title>{{ titulo }}</title>
+</head>
+<body>
+    {% include 'bases/layout/header.html' %}
+    <div class="fijaHeader"></div>
+    {% block content%} 
+
+    {%endblock%}
+    {% include 'bases/layout/footer.html' %}
+    <!-- Los Javascripts  -->
+    {% include "bases/components/_javascript.html" %} 
+</body>
+</html>

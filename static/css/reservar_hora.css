@@ -1,0 +1,169 @@
+.container-reserva {
+    background: white;
+    padding: 4rem;
+    box-shadow: 0 0 10px rgba(0, 128, 255, 0.1);
+    border-radius: 8px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    position: relative;
+}
+
+.container-reserva h1 {
+    color: #333;
+    text-align: center;
+}
+
+.container-reserva form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-reserva label {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.container-reserva input, select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Includes padding and border in element's total width and height */
+}
+
+.container-reserva button {
+    background-color: #078ff8;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+.fechaDispo {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+
+}
+.calendar {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 350px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.calendar-body {
+    padding: 10px;
+}
+
+.day-names, .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.day-names div, .days div {
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.days div {
+    cursor: pointer;
+}
+
+.days div:hover {
+    background-color: #e0e0e0;
+}
+
+.today {
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+}
+.inactive {
+    color: #ccc;
+    pointer-events: none;
+}
+
+#reservaForm input:focus, #reservaForm select:focus {
+    border-color: #0abaff;
+    outline: none;
+}
+.container-reserva button:hover {
+    background-color: #4c9aae;
+}
+.listaDeCanchas {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+/* Estilos para WebKit (Chrome, Edge, Safari) */
+.listaDeCanchas::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento horizontal */
+    height: 8px; /* Altura de la barra de desplazamiento vertical, si la necesitas */
+}
+
+.listaDeCanchas::-webkit-scrollbar-track {
+    background: transparent; /* Color del riel de la barra */
+}
+
+.listaDeCanchas::-webkit-scrollbar-thumb {
+    background:  #078ff8; /* Color del deslizador */
+    border-radius: 10px; /* Redondea las esquinas del deslizador */
+}
+
+.listaDeCanchas img {
+    width: 8rem;
+    height: 8rem;
+    box-shadow: 0 0 10px rgba(0, 128, 255, 0.1);
+    transition: transform 0.5s ease; /* Transición suave para el transform */
+    cursor: pointer; /* Cursor indicativo para interactividad */
+}
+
+.listaDeCanchas img.active {
+    position: absolute;
+    z-index: 10;
+    transform: translate(-50%, -50%) scale(4); /* Ajusta la posición y escala la imagen */
+}
+.messajesReserva-movil {
+    display: none;
+}.messajesReserva {
+    display: block;
+}
+@media (max-width:900px ) {
+    .container-reserva {
+        width: 80%;
+    }
+    .messajesReserva-movil {
+        display: block;
+    }.messajesReserva {
+        display: none;
+    }
+}
+@media screen and (max-width: 500px) {
+    .container-reserva {
+        width: 100%;
+    }
+}

@@ -1,0 +1,44 @@
+{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_main">
+  <header class="main_header">
+    <div class="user_info">
+      {% if usuario.profile_image %}
+        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+      {% else %}
+              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+      {% endif %}
+        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+    </div>
+</header>
+<br><h3 class="dashboard_cancha_titulo">Detalles de los Ordenes</h3><br>
+  
+<table class="card_details_table">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Usuario</th>
+            <th>Cancha</th>
+            <th>Detalles</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reserva in reservas %}
+        <tr>
+            <td>{{ reserva.fecha }}</td>
+            <td>{{ reserva.user.username }}</td>  <!-- Aquí obtenemos el nombre de usuario -->
+            <td>{{ reserva.cancha.nombre|slice:":20" }}</td>
+            <td>Orden #{{ reserva.id_reserva }}</td>
+            <td>
+                <a href="{% url 'administrador:dashboard_orden_administrar' reserva.id_reserva %}" class="btn_detalle">
+                    <i class="fa-solid fa-gears"></i>
+                    Detalles
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

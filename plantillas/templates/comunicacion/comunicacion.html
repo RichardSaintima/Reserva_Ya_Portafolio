@@ -1,0 +1,33 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block content%}
+  {% include 'bases/components/alertas.html' %}
+  <div class="dashboard_main">
+    <section class="main_content">
+    <br><h3 class="dashboard_cancha_titulo">Contactar con {{cancha.user.first_name}}</h3><br>
+        <form id="mensaje_formulario" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="chat_container">
+                <div class="chat_main">
+                    <div class="chat_messages" id="chat_messages">
+                        <div class="fileUpload" id="image_button" >
+                            <input type="file" id="image_input" name="enviarfile" accept=".png, .jpg, .jpeg, .pdf" style="display: none;">
+                            <i class="fa fa-paperclip image_button" style="cursor: pointer;"></i>  
+                            <p>Agregar File</p>
+                        </div>
+                        <p class="aceptarfile">aceptar png,jpg o pdf</p>
+                        <div id="mostrarfile"></div>
+                    </div>
+                    <div class="chat_input">
+                        <textarea id="message_input" name="enviarmensajes" placeholder="Escribe un mensaje..."></textarea>
+                        <button  type="submit" id="send_button">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>         
+                </div>
+            </div>
+        </form>   
+    </section>
+  </div>
+{% endblock %}

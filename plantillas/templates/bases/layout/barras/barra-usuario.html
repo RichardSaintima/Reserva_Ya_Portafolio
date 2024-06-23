@@ -1,0 +1,41 @@
+<div class="subBarra-usuario"  id="barraUsuario">
+    {% if user.is_authenticated %}
+    <a href="{% url 'administrador:dashboard' %}">Dashboard</a>
+    <a href="{% url 'account_logout' %}">Cerrar Sesión</a>
+    {% else %}
+    <a href="{% url 'account_login' %}">Iniciar Sesión</a>
+    {% endif %}
+    <a href="{% url 'plantillas:sobre_mi' %}" class="dashboard__enlace" >
+        <i class="fa-solid fa-user dashboard__icono"></i>
+        <span class="dashboard__menu-texto">
+            Sobre MI
+        </span>    
+    </a>
+    <a href="{% url 'plantillas:ayuda' %}" class="dashboard__enlace" >
+        <i class="fa-solid fa-headset dashboard__icono"></i>
+        <span class="dashboard__menu-texto">
+            Ayuda
+        </span>    
+    </a>
+</div>
+<div class="subBarra-usuario-movil" id="barraUsuarioMovil">
+    {% if user.is_authenticated %}
+    <a href="{% url 'administrador:dashboard' %}">Dashboard</a>
+    <a href="{% url 'account_logout' %}">Cerrar Sesión</a>
+    {% else %}
+    <a href="{% url 'account_login' %}">Iniciar Sesión</a>
+    {% endif %}
+    <a href="{% url 'plantillas:sobre_mi' %}" class="dashboard__enlace" >
+        <i class="fa-solid fa-user dashboard__icono"></i>
+        <span class="dashboard__menu-texto">
+            Sobre MI
+        </span>    
+    </a>
+    <a href="{% url 'plantillas:ayuda' %}" class="dashboard__enlace" >
+        <i class="fa-solid fa-headset dashboard__icono"></i>
+        <span class="dashboard__menu-texto">
+            Ayuda
+        </span>    
+    </a>
+</div>
+

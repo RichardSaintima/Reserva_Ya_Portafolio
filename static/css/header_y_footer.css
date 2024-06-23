@@ -1,0 +1,401 @@
+.imgLogo {
+  max-width: 6rem;
+  object-fit: cover;
+}
+.header {
+  background-color: #0abaff;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: fixed;
+  top: 0;
+  transition: top 0.3s;
+  z-index: 1000;
+}
+.fijaHeader {
+  margin: 4rem;
+  position: relative;
+}
+.menuHeader {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.search {
+  display: flex;
+}
+.redes,
+.sociales {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+}
+.nohay {
+  height: 80vh;
+}
+.nohay h1 {
+  font-size: 4rem;
+  text-align: center;
+  margin-top: 5rem;
+  color: #0abaff;
+}
+.redes img {
+  max-width: 3rem;
+  object-fit: cover;
+  cursor: pointer;
+  filter: invert(20%); /* Invierte el color si tus iconos son oscuros */
+}
+.sociales img {
+  max-width: 2rem;
+  object-fit: cover;
+  filter: invert(20%); /* Invierte el color si tus iconos son oscuros */
+}
+/* Efecto al pasar el mouse sobre los iconos de redes sociales */
+.sociales img:hover, .redes img:hover {
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+  cursor: pointer; /* Cambia el cursor al pasar sobre los iconos */
+  filter: invert(100%); /* Invierte el color si tus iconos son oscuros */
+}
+.navegacion {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 0.5rem;
+}
+.navegacion a {
+  color: #fff;
+  padding: 1rem;
+  margin: .5rem;
+  border-radius: .5rem;
+  font-weight: 700;
+  transition: all .5s;
+}
+.navegacion a:hover {
+  background-color: #5598b2;
+  color: #2b2f33;
+  transition: all .5s;
+}
+.search input[type="search"] {
+  padding: 5px;
+  margin-right: 5px;
+  background-color: #58c6f2;
+  border: none;
+  border-bottom: 1px solid #fff;
+  border-radius: 3px;
+  color: #fff; /*el color del texto y el placeholder se diferencien */
+}
+
+/* Remueve el borde y posiblemente cambia el color del placeholder al enfocarse */
+.search input[type="search"]:focus {
+  outline: none; /* Elimina el outline que algunos navegadores agregan */
+  border-bottom: 1px solid transparent; /* O usa 'border: none;' si no quieres ningún borde */
+  color: #fff; /*Cambia el color del placeholder al enfocarse si se desea */
+}
+
+.search input[type="search"]:focus::placeholder,
+.search input[type="search"]::placeholder {
+  color: rgb(33, 144, 92);
+}
+
+.search button {
+  padding: 5px 10px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos globales del footer */
+.footer {
+  background-color: #0abaff; /* Color de fondo oscuro para el footer */
+  color: #fff; /* Texto en color claro para contraste */
+  padding: 2rem; /* Espaciado alrededor del contenido interno */
+  text-align: center; /* Centrar el texto */
+  font-family: Arial, sans-serif; /* Tipo de fuente */
+}
+
+.footer-primero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 1rem;
+}
+/* Contenedor de los iconos de redes sociales */
+.footer-redes {
+  display: flex;
+  justify-content: center; /* Centrar los iconos de redes sociales horizontalmente */
+  align-items: center; /* Centrar los iconos de redes sociales verticalmente */
+  gap: 15px; /* Espacio entre los iconos */
+}
+
+/* Estilos para las imágenes de redes sociales en el footer */
+.header-mobile img {
+  width: 2.8rem; /* Tamaño uniforme para los iconos */
+  transition: transform 0.3s ease; /* Efecto suave al pasar el mouse */
+}
+
+.footer-redes {
+  display: flex;
+  justify-content: center; /* Centrar los iconos de redes sociales horizontalmente */
+  align-items: center; /* Centrar los iconos de redes sociales verticalmente */
+  gap: 15px; /* Espacio entre los iconos */
+  cursor: pointer; /* Cambia el cursor al pasar sobre los iconos */
+  font-size: 3rem;
+}
+.footer-redes a {
+  color: #effaf7; /* Color de los iconos */
+  transition: all .5s;
+}
+.footer-redes a:hover {
+  color: #60d5ff; /* Color de los iconos */
+  transition: all .5s;
+}
+/* Estilo para el texto de derechos de autor */
+.footer-copyright {
+  display: flex;
+  gap: 1rem;
+  justify-content: center; /* Centrar el texto horizontalmente */
+  margin-top: 1rem; /* Espacio por encima del texto */
+  font-size: 0.8em; /* Tamaño de fuente más pequeño */
+}
+.footer .navegacion {
+  box-shadow: none;
+}
+
+.footer-contacto p {
+  margin: 0;
+  padding-bottom: 1rem;
+}
+
+/* Estilos para el submenú */
+.subBarra-usuario {
+  position: fixed; /* Posición absoluta para que el submenú no afecte al menú principal */
+  top: 8rem;
+  right: 0;
+  display: none;
+  background-color: #0abaffe6; /* Color de fondo del submenú */
+  z-index: 1001;
+  width: 22rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  overflow-y: auto; /* Asegúrate de tener esto */
+  overflow-x: hidden; /* Asegúrate de tener esto */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.subBarra-usuario a, .subBarra-usuario-movil a {
+  color: #fff;
+  padding: 1rem;
+  margin: .5rem;
+  border-radius: .5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-weight: 700;
+  transition: all .5s;
+  width: 100%;
+}
+.subBarra-usuario a:hover {
+  background-color: #5598b2;
+  color: #2b2f33;
+  transition: all .5s;
+}
+
+.subBarra-usuario-movil {
+  position: fixed; /* Posición absoluta para que el submenú no afecte al menú principal */
+  display: none;
+  z-index: 1010;
+  width: 50%;
+  right: 0;
+  bottom: 30%;
+  background-color: #0abaffe6; /* Color de fondo del submenú */
+  align-items: center;
+  padding: 1rem;
+  overflow-y: auto; /* Asegúrate de tener esto */
+  overflow-x: hidden; /* Asegúrate de tener esto */
+}
+
+/* Agrega un borde superior al último enlace */
+.subBarra-usuario a:last-child {
+  border-top: 1px solid #ddd;
+}
+.reserva {
+  border-left: 1px solid #fff;
+}
+/* DESPLEGE EL SUBBEMU  */
+.show {
+  display: flex; /* Muestra el submenú cuando  este desplegado */
+  flex-direction: column; /* Alinea los elementos uno debajo de otros cuando se desplege el submenu */
+  align-items: center; /* Alinea los elementos al centro */
+}
+
+.header-mobile,
+.navegacionMovil,
+.searchMovil,
+.redesMovil,
+.socialesMovil {
+  display: none;
+}
+
+ 
+.socialesMovil {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  cursor: pointer; /* Cambia el cursor al pasar sobre los iconos */
+  font-size: 3rem;
+}
+.socialesMovil a, .fa-circle-user, .iconoshopping {
+  color: #2a2d2d; /* Color de los iconos */
+  transition: all .5s;
+}
+/* Efecto al pasar el mouse sobre los iconos de redes sociales */
+.socialesMovil a:hover, .fa-circle-user:hover, .iconoshopping:hover {
+  color: #60d5ff; /* Color de los iconos */
+  transition: all .5s;
+}
+.fa-circle-user {
+  font-size: 3.3rem;
+}
+.iconoshopping {
+  font-size: 2.5rem;
+}
+/* Estilos para Tablet */
+@media screen and (max-width: 780px) {
+  .footer-primero {
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  .footer-contacto {
+    width: 50%;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #fff;
+  }
+    /* selecciona el clase del submenu para el tamano de celular */
+    .subBarra-usuario {
+      display: none;
+    }
+  .footer .navegacion {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 1rem;
+    width: 50%;
+  }
+  .redes,
+  .search,
+  .navegacionMovil {
+    display: none;
+  }
+  .navegacion {
+    margin-left: 2rem;
+  }
+  .header-mobile {
+    display: flex;
+    padding: 1.2rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+  }
+  .menu-mobile {
+    position: fixed; /* Posición absoluta para que el submenú no afecte al menú principal */
+    top: 8rem;
+    right: 0;
+    display: none;
+    background-color: #0abaffe6; /* Color de fondo del submenú */
+    z-index: 1001;
+    width: 70%;
+    height: 70%;
+    overflow: auto;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .searchMovil {
+    display: flex;
+    align-items: center;
+    font-size: 100%;
+  }
+  .searchMovil input[type="search"] {
+    padding: 1rem;
+    margin: 5px;
+    width: 100%;
+    background-color: #58c6f2;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 3px;
+    color: #fff; /*el color del texto y el placeholder se diferencien */
+  }
+/* DESPLEGE EL SUBBEMU  */
+.mostrarUsuarioMovil {
+  display: flex; /* Muestra el submenú cuando  este desplegado */
+  flex-direction: column; /* Alinea los elementos uno debajo de otros cuando se desplege el submenu */
+  align-items: center; /* Alinea los elementos al centro */
+}
+  /* Remueve el borde y posiblemente cambia el color del placeholder al enfocarse */
+  .searchMovil input[type="search"]:focus {
+    outline: none; /* Elimina el outline que algunos navegadores agregan */
+    border-bottom: 1px solid transparent; /* O usa 'border: none;' si no quieres ningún borde */
+    color: #fff; /*Cambia el color del placeholder al enfocarse si se desea */
+  }
+
+  .searchMovil input[type="search"]:focus::placeholder,
+  .search input[type="search"]::placeholder {
+    color: rgb(33, 144, 92);
+  }
+
+  .searchMovil button {
+    padding: 1rem;
+    margin: 5px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+  }
+  .redesMovil {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0; /* Alinea .redesMovil con la parte inferior del .menu-mobile */
+    width: 100%; /* Asegura que ocupe el ancho completo si es necesario */
+    padding: 1rem;
+    background-color: rgba(1,238,255,0.322); /* Aumento del desenfoque y el esparcimiento */
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 30px; /* Negro con mayor opacidad */
+  }
+
+  }
+
+/* Estilo  para dispositivos móviles */
+@media screen and (max-width: 500px) {
+  /* selecciona el clase del submenu para el tamano de celular */
+  .subBarra-usuario {
+    display: none;
+  }
+  .navegacionMovil {
+    display: flex;
+    flex-direction: column; /* Coloca las opciones verticalmente */
+    padding: 2rem;
+    align-items: center;
+    border-radius: 0.5rem;
+  }
+  .navegacionMovil a {
+    color: #fff;
+    padding: 1rem;
+    margin: .5rem;
+    border-radius: .5rem;
+    font-weight: 700;
+    transition: all .5s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100%;
+  }
+  .navegacion {
+    display: none;
+  }
+  .footer .navegacion {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    box-shadow: none;
+  }
+}

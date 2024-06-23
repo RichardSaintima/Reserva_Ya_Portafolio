@@ -1,0 +1,29 @@
+{% load static %}
+<!-- HEADER -->
+<header class="dashboard_header" id="mostrar">
+  <div class="dashboard_header-grid">
+    <div class="dashboard_headerBurger">
+      <div class="dashboard_header-mobile">
+          <img id="btnDashboardMenuMobile" src="{% static 'img/otros/menu.svg' %}" alt="Menú" />
+          <img id="btnDashboardCloseMenuMobile" src="{% static 'img/otros/cerrar.svg' %}" alt="Cerrar" style="display: none;"/>
+      </div>
+      <a href="{% url 'plantillas:index' %}">
+          <img class="imgLogo" src="{% static 'img/otros/logo.png' %}" alt="LogoTipo" />
+      </a> 
+    </div>
+
+      <form method="GET" action="{% url 'administrador:buscar_administrador' %}">
+          <div class="search_dash">
+            <input type="search" name="q" placeholder="Buscar" value="{{ query }}" />
+            <button type="submit">
+                <img src="{% static 'img/otros/search.png' %}" alt="Buscar" />
+            </button>
+        </div>
+      </form>
+      <nav class="dashboard_nav">
+          {% if user.is_authenticated %}
+          <a href="{% url 'account_logout' %}">Cerrar Sesión</a>
+          {% endif %}
+      </nav>
+  </div>
+</header>

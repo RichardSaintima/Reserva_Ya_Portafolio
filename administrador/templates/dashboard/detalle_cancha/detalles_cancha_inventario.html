@@ -1,0 +1,25 @@
+{% load static %} 
+<table class="card_details_table">
+    <thead>
+        <tr>
+            <th>Foto</th>
+            <th>Cancha</th>
+            <th>Dueño/a</th>
+            <th>Precio</th>
+            <th>Capacidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cancha in canchas %}
+        <tr>
+            <td>
+                <img class="FotoProducto" src="{% static 'img/otros/logo.png' %}" alt="LogoTipo" />
+            </td>
+            <td>{{ cancha.tipo_cancha.nombre }}</td>
+            <td>{{ cancha.user }}</td>
+            <td>{{ cancha.precio }} CLP hora</td>
+            <td>+{{ cancha.capacidad }} personas</td>
+        </tr>
+        {% endfor %}        
+    </tbody>
+</table>

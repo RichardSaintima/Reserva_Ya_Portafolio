@@ -1,0 +1,40 @@
+<!-- menu--open -->
+<div class="menu-mobile" id="menuMobile" style="display: none">
+  {% load static %}
+  <div class="menuMovil">
+    <form action="{% url 'plantillas:buscar_canchas' %}" method="get">
+      <div class="searchMovil">
+        <input type="search" name="q" placeholder="Buscar Tipo, Nombre, etc " />
+        <button type="submit">
+            <img src="{% static 'img/otros/search.png' %}" alt="Buscar" />
+        </button>
+      </div>
+    </form>
+    <nav class="navegacionMovil" id="nav">
+      <a href="/">Inicio</a>
+      <a href="{% url 'plantillas:categoria_cancha' %}">Categorias</a>
+      <a href="{% url 'plantillas:mas_valorado' %}">Mas Valorado</a>
+    </nav>
+  </div>
+
+  <div class="redesMovil">
+    <div class="socialesMovil">
+      <a href="https://www.facebook.com/">
+        <i class="fa-brands fa-facebook"></i>
+      </a>
+      <a href="https://twitter.com/">
+        <i class="fa-brands fa-twitter"></i>
+      </a>
+      <a href="https://www.instagram.com/">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <div class="reserva"></div>
+      <a href="{% url 'plantillas:dashboard_historial'%}">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </a>
+    </div>
+    <i id="usuarioMovil"  class="fa-regular fa-circle-user iconosFont"></i>
+    <!-- Submenu  de Usuario -->
+    {% include 'bases/layout/barras/barra-usuario.html' %}
+  </div>
+</div>

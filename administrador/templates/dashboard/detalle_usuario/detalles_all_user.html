@@ -1,0 +1,34 @@
+{% load static %} 
+<table class="card_details_table">
+    <thead>
+        <tr>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Rol</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>  
+                {% if user.profile.profile_image %}
+                    <img class="FotoProducto" src="{{ user.profile.profile_image.url }}" alt="Avatar de Usuario" />
+                {% else %}
+                    <img class="FotoProducto" src="{% static 'img/otros/foto_hombre.png' %}" alt="Avatar de Usuario" />
+                {% endif %}
+            </td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.profile.rol.tipo_rol }}</td>
+            <td>
+                <a href="{% url 'administrador:dashboard_usuario_administrar' %}" class="btn_detalle">
+                    <i class="fa-solid fa-gears"></i>
+                    Detalles
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

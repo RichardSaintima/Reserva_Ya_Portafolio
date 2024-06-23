@@ -1,0 +1,95 @@
+<div class="form_group">
+    <label for="imagenes">Imágenes de la Cancha:</label>
+    <input type="file" id="imagenes" name="imagenes" accept="image/*" multiple >
+</div>
+
+<div id="mostrarImagenesSeleccionado">
+    {% for imagen in cancha.imagenes.all %}
+        <div class="existing_image">
+            <img src="{{ imagen.imagen.url }}" alt="Imagen existente">
+            <button type="button" class="btn-eliminar" data-index="{{ forloop.counter0 }}">X</button>
+        </div>
+    {% endfor %}
+</div>
+
+ <!-- Campo oculto para almacenar las imágenes existentes eliminadas -->
+ <input type="hidden" id="imagenesEliminadas" name="imagenesEliminadas">
+
+<div class="form_group">
+    <label for="nombre">Nombre de la Cancha:</label>
+    <input type="text" id="nombre" name="nombre" value="{{ cancha.nombre }}" required>
+</div>
+
+<div class="form_group">
+    <label for="region">Región:</label>
+    <select id="region" name="region" required>
+        <option value="" selected disabled>-- Seleccionar región --</option>
+        {% for region in regiones %}
+        <option value="{{ region.id_region }}" {% if region.id_region == direccion.region.id_region %}selected{% endif %}>{{ region.nombre }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="form_group">
+    <label for="comuna">Comuna:</label>
+    <select id="comuna" name="comuna" required>
+        <option value="" selected disabled>-- Seleccionar comuna --</option>
+        {% for comuna in comunas %}
+        <option value="{{ comuna.id_comuna }}" {% if comuna.id_comuna == direccion.comuna.id_comuna %}selected{% endif %}>{{ comuna.nombre }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<div class="form_group">
+    <label for="ubicacion">Direccion y numero:</label>
+    <input type="text" id="ubicacion" name="ubicacion" value="{{ direccion.direccion }}" placeholder="Ej: Mi Casa 123" required>
+</div>
+
+<div class="form_group">
+    <label for="tipo">Tipo de Cancha:</label>
+    <select id="tipo" name="tipo" required>
+        <option value="" selected disabled>-- Seleccionar tipo cancha --</option>
+        {% for tipo in tipos_cancha %}
+        <option value="{{ tipo.id_tipo_cancha }}" {% if tipo.id_tipo_cancha == cancha.tipo_cancha.id_tipo_cancha %}selected{% endif %}>{{ tipo.nombre }}</option>
+        {% endfor %}
+    </select>
+</div>
+<div class="form_group">
+    <label for="capacidad">Capacidad:</label>
+    <input type="number" id="capacidad" name="capacidad" value="{{ cancha.capacidad }}" required>
+</div>
+<div class="form_group">
+    <label for="disponibilidad">Disponibilidad (Día y Hora):</label>
+    <div id="disponibilidad_container"></div>
+    <button type="button" class="btn_submit" id="agregar_agenda_btn">Agregar Agenda</button>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const disponibilidadOpciones = JSON.parse('{{ disponibilidad_opciones_json|safe|escapejs }}');
+        const disponibilidadesExistentes = JSON.parse('{{ disponibilidades_existentes_json|safe|escapejs }}');
+        const container = document.getElementById('disponibilidad_container');
+        
+        disponibilidadesExistentes.forEach((disponibilidad, idx) => {
+            agregarAgenda(disponibilidadOpciones, disponibilidad.dia_semana, disponibilidad.horaapertura, disponibilidad.horacierre, idx);
+        });
+    
+        document.getElementById('agregar_agenda_btn').addEventListener('click', function() {
+            const idx = container.children.length;
+            agregarAgenda(disponibilidadOpciones, null, null, null, idx);
+        });
+    });
+    
+</script>
+
+<div class="form_group">
+    <label for="precio">Precio por Hora:</label>
+    <input type="number" id="precio" name="precio" value="{{ cancha.precio }}" required>
+</div>
+<div class="form_group">
+    <label for="descripcion">Descripción de la cancha:</label>
+    <textarea id="descripcion" name="descripcion" required>{{ cancha.descripcion }}</textarea>
+</div>
+<div class="form_group">
+    <label for="subdescripcion">Subdescripción de la cancha:</label>
+    <textarea id="subdescripcion" name="subdescripcion" required>{{ cancha.subdescripcion }}</textarea>
+</div>

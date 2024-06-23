@@ -1,0 +1,319 @@
+/*Login*/
+.contenedor-login{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+.formulario-login{
+    width: 35%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(10, 186, 255);
+    height: 100%;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+
+.titulo-login {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1rem;
+    font-family: 'Arial', sans-serif; /* Cambia la fuente según tus preferencias */
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.formulario-login .btn-contraseña{
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    margin: 0 auto;
+}
+
+@media (max-width:900px ) {
+    .formulario-login{
+        width: 80%;
+    }
+
+    .formulario-login .btn-contraseña{
+        display: flex;
+        justify-content: space-between;
+        width: 15%;
+        margin: 0 auto;
+    }
+    
+}
+
+
+/*Registrar*/
+.contenedor-registrar{
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+.formulario-registrar{
+    width: 35%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(10, 186, 255);
+    height: 55vh;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+
+.formulario-login ul {
+    margin: 0 auto;
+    top: -50px;
+    font-size: 1.5rem;
+    color: red;
+    list-style-type: none;
+}
+
+.formulario-login p {
+    display: flex;
+    flex-direction: column;
+}
+.formulario-login p label {
+    font-size: 1.5rem;
+    margin-bottom: 10px !important;
+    width: 70%;
+    margin: 0 auto;
+
+}
+.formulario-login p input {
+    margin: 0 auto;
+    color: black;
+    background-color: white;
+    font-size: 1.5rem;
+    text-indent: 10px;
+    width: 70%;
+    padding: 10px 0 10px 0;
+    border-radius: 10px;
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+}
+label[for="id_remember"] {
+    position: relative;
+    font-size: 1.3rem !important;
+    margin: 0 auto!important ;
+}
+input[for="id_remember"] {
+    position: absolute;
+    font-size: 1.3rem !important;
+    margin: 0!important;
+}
+
+.btn-contraseña{
+    margin: 0 auto;
+}
+.formulario-login span{
+    width: 70%;
+    margin: 0 auto !important ;
+    font-size: 1.5rem;
+
+}
+#id_password_helptext{
+    display: none;
+}
+.btn_login{
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.contenedor-forgot_sigup{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+.contenedor-forgot_sigup a{
+    width: 45%;
+}
+.loginBtn {
+    box-sizing: border-box;
+    position: relative;
+    /* width: 13em;  - apply for fixed size */
+    margin: 0.2em;
+    padding: 0 15px 0 46px;
+    border: none;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #FFF;
+  }
+  .loginBtn:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 100%;
+  }
+  .loginBtn:focus {
+    outline: none;
+  }
+  .loginBtn:active {
+    box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+  }
+
+/* Google */
+.loginBtn--google {
+    /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+    background: #DD4B39;
+    width: 100%;
+    min-width: 185px;
+  }
+  .loginBtn--google:before {
+    border-right: #BB3F30 1px solid;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+  }
+  .loginBtn--google:hover,
+  .loginBtn--google:focus {
+    background: #E74B37;
+  }  
+
+  /*Solicitud*/
+
+  .titulo-formulario {
+    text-align: center;
+    color: white;
+    margin-bottom: 4rem; /* Ajusta el margen inferior según sea necesario */
+}
+
+  .contenedor-solicitud {
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.formulario-solicitud {
+    width: 100%; /* Ajuste del ancho del formulario */
+    max-width: 600px; /* Establecer un ancho máximo opcional */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(10, 186, 255);
+    /* height: 100%; Quitar la altura fija para ajuste dinámico */
+    justify-content: center;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.contenedor-input_label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px; /* Añadir margen inferior entre campos */
+}
+
+.contenedor-input_label input {
+    width: 70%; /* Ajustar el ancho del input al 100% del contenedor */
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.contenedor-input_label label {
+    width: 70%; /* Ajustar el ancho de la etiqueta al 100% del contenedor */
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+
+.btn-solicitud {
+    width: 50%; /* Ajustar el ancho del botón según sea necesario */
+    margin: 20px auto; /* Ajustar el margen del botón */
+}
+.solicitud{
+    display: flex;
+    
+}
+
+/* Estilos adicionales para hacer el formulario responsive */
+@media (max-width: 768px) {
+    .formulario-solicitud {
+        width: 100%; /* Ajustar el ancho del formulario en pantallas más pequeñas */
+        
+    }
+    
+    .contenedor-input_label input,
+    .contenedor-input_label label {
+        width: 100%; /* Ajustar el ancho del input y label al 100% en pantallas más pequeñas */
+    }
+
+    .btn-solicitud {
+        width: 100%; /* Ajustar el ancho del botón al 100% en pantallas más pequeñas */
+    }
+}
+
+/* Estilos para tamaños de pantalla mayores a 768px (puedes ajustar según necesites) */
+@media (min-width: 769px) {
+    .formulario-solicitud {
+        width: 70%; /* Ajustar el ancho del formulario en pantallas más grandes */
+        max-width: 600px; /* Ajustar el ancho máximo del formulario */
+    }
+}
+
+
+
+/*Cerrar sesión*/
+
+/* Estilos para el formulario */
+.form-container {
+    background-color: rgb(10, 186, 255); /* Color celeste para el fondo */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto; /* Centramos el formulario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opcional: sombra para dar un efecto de profundidad */
+    text-align: center;
+}
+
+/* Otros estilos opcionales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    margin-bottom: 20px;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.menu ul li {
+    margin-top: 5px;
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    font-size: small;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #1d3557;
+}
+
+.messages {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+

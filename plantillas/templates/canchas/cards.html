@@ -1,0 +1,40 @@
+{% load static %}
+
+{% for item in canchas_con_imagenes %}
+<div class="card parafiltro" data-region="{{ item.direccion.region__nombre }}" data-comuna="{{ item.direccion.comuna__nombre }}" data-precio="{{ item.cancha.precio }}" data-tipo="{{ item.cancha.tipo_cancha.nombre }}">
+    <div class="image-container">
+      <!-- Botón de favoritos -->
+      {% if user.is_authenticated %}
+        <a class="like-button" data-url="{% url 'plantillas:cambiar_favorito' item.cancha.id_cancha %}">
+          {% if item.es_favorito %}
+            <i class="fa fa-heart"></i>
+          {% else %}
+            <i class="fa fa-heart-crack"></i>
+          {% endif %}
+        </a>
+      {% endif %}
+      <a href="{% url 'plantillas:detalle_cancha' item.cancha.id_cancha %}">
+        {% if item.primera_imagen %}
+          <img src="{{ item.primera_imagen.imagen.url }}" alt="Imagen de la cancha deportiva">
+        {% endif %}
+        <div class="rating">
+          {% if item.avg_calificacion %}
+            <span>
+              <i class="fa fa-star"></i>
+              {{ item.avg_calificacion|floatformat:1 }}
+            </span>
+          {% else %}
+            <span>N/A</span>
+          {% endif %}
+        </div>
+      </a>
+    </div>
+    <div class="card-info">
+      <h2 class="title">{{ item.cancha.nombre }}</h2>
+      <p class="description">{{ item.cancha.descripcion }}</p>
+      <p class="price">${{ item.cancha.precio }} CLP hora.</p>
+    </div>
+</div>
+{% endfor %}
+
+

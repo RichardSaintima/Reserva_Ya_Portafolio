@@ -1,0 +1,44 @@
+{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_main">
+  <header class="main_header">
+    <div class="user_info">
+      {% if usuario.profile_image %}
+        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+      {% else %}
+              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+      {% endif %}
+        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+    </div>
+</header>
+
+<section class="main_content_contacto">
+    <div class="chat_container">
+        <div class="chat_main">
+            <div class="chat_header">
+                <h3>Chat con <strong>{{ cancha.user.first_name }} {{ cancha.user.last_name }}</strong></h3>
+            </div>
+            <div class="chat_messages" id="chat_messages">
+                {% for message in messages %}
+                    <div class="message {% if message.username == usuario.username %}sent{% else %}received{% endif %}">
+                        <p>{{ message.message }}</p>
+                        <span class="timestamp">{{ message.timestamp }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="chat_input">
+                <input type="file" id="image_input" accept="image/*" style="display: none;">
+                <i id="image_button" class="fa fa-paperclip" style="cursor: pointer;"></i>
+                <input type="text" id="message_input" placeholder="Escribe un mensaje...">
+                <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                <button id="send_button">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+{% endblock %}

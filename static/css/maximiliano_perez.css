@@ -1,0 +1,605 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* Estilos para las tarjetas */
+.card {
+    width: calc(33.333% - 30px); /* Ancho de cada tarjeta */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px;
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+}
+.image-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.fa-heart-crack {
+    color: rgb(14, 177, 222);
+}
+.fa-heart {
+    color: red;
+}
+  
+.card img {
+    width: 100%;
+}
+
+.title-location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.7rem; /* Tamaño de fuente más pequeño para el título */
+    margin-top: 0;
+    margin-bottom: 5px; /* Nuevo margen inferior para el título */
+    margin-right: 50px;
+    color: black; /* Cambio del color del texto a negro */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.rating {
+    position: absolute;
+    right: 0;
+    padding: 5px;
+}
+
+.rating span {
+    display: inline-flex;
+    align-items: center;
+}
+
+.rating span i {
+    color: black;
+    margin-right: 5px;
+}
+
+.description {
+    font-size: 1.3rem;
+    margin: 2px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.price {
+    font-size: 1em; 
+    margin: 5px 0;
+    padding-top: 10px;
+}
+
+.like-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.verMasComentarios {
+    background-color: #288ffd;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.detallecomentario {
+    width: 80%;
+}
+.verMasComentarios:hover {
+    background-color: #0f66c3d6;
+}
+.card-info {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    cursor: pointer;
+}
+.card-info p {
+    color: #000000;
+}
+.card-info p:hover {
+  color: #101010;  
+}
+/* Estilos para la disposición de las tarjetas */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20;
+}
+
+
+/* Estilos para detalle_cancha */
+#general {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.imagendetalle {
+    max-width: 500px; /* Ancho máximo de la imagen */
+    border-radius: 10px; /* Esquinas redondeadas */
+}
+
+.carouseldetalle {
+    position: relative;
+    width: 400px; /* Ancho específico del carousel */
+    height: 200px; /* Altura específica del carousel */
+    margin: 0 auto;
+    overflow: hidden;
+}
+.carousel-bloque {
+    height: auto;
+    width: 45%;
+}
+#diaYHora {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+#nombredia {
+    margin: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    padding: .5rem;
+}
+#nombredia p {
+    color: #fff !important;
+}
+.boton-reserva {
+    background-color: #fff;
+    color: #0abaff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+}
+.boton-reserva:hover {
+    background-color: #98e1f7da;
+}
+.carouseldetalle img {
+    width: 100%;
+    height: 100%; /* Altura fija para las imágenes */
+    object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin deformarla */
+}
+
+
+#general p {
+    margin-bottom: 5px;
+    color: black;
+    font-size: 1.3rem;
+}
+
+#general h3 {
+
+    margin-top: 1.5rem;
+    margin-bottom: 5px;
+    color: black;
+    font-size: 1.5rem;
+}
+
+#text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#contenedor {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+#contenedor  .carousel {
+    width: 45%;
+    margin: 0;
+}
+aside{
+    color: #fff;
+    box-shadow: rgba(115, 126, 211, 0.429) 0px 3px 8px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+
+}
+
+.titulo {
+    color: #0abaff !important;
+    font-size: 2rem !important;
+    text-align: center !important;
+}
+.subtitulo {
+    color: #0abaff !important;
+    font-size: 1.5rem !important;
+    text-decoration: underline;
+    margin-bottom: auto;
+}
+.canchas-recomendadas-container {
+    width: 100%; /* O el ancho que desees */
+    overflow-x: auto; /* Hacer que el contenido desborde horizontalmente */
+    white-space: nowrap; /* Evitar saltos de línea */
+}
+
+.canchas-recomendadas {
+    display: inline-flex; /* Mostrar los elementos en una sola línea */
+    gap: 20px; /* Espacio entre elementos */
+}
+/* Estilos para WebKit (Chrome, Edge, Safari) */
+.canchas-recomendadas-container::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento horizontal */
+    height: 8px; /* Altura de la barra de desplazamiento vertical, si la necesitas */
+}
+.canchas-recomendadas-container::-webkit-scrollbar-track {
+    background: transparent; /* Color del riel de la barra */
+}
+
+.canchas-recomendadas-container::-webkit-scrollbar-thumb {
+    background:  #078ff8; /* Color del deslizador */
+    border-radius: 10px; /* Redondea las esquinas del deslizador */
+}
+
+.contenedor-resumen {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: 1rem;
+}
+.contenedor-resumen h2 {
+    margin: 0;
+    color: black;
+    font-size: 1.5rem;
+}
+.contenedor-resumen aside {
+    margin-top: 1rem;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+}
+.contenedor-resumen aside #resumen {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    gap: 10%;
+}
+.descripcion-actividad {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+    -webkit-box-orient: vertical;
+}
+.ver-mas {
+    color: #0abaff !important;
+    cursor: pointer;
+    text-decoration: underline;
+    display: none;
+}
+.descripcion-actividad.expandida {
+    -webkit-line-clamp: initial; /* Muestra todas las líneas */
+}
+.redes-actividad {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.redes-actividad h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+.redes-actividad a {
+    margin-right: 10px;
+    color: #333;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.redes-actividad a:hover {
+    color: #0abaff;
+}
+
+.resumen-IrComentar {
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    color: #fff;
+    text-wrap: nowrap;
+    background-color:#0abaff;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+.resumen-IrComentar:hover {
+    background-color: #00bdf7da;
+}
+#resumen {
+    justify-content: space-evenly;
+}
+.rating .fa-star {
+    color: #0191ffee;
+}
+#resumen .fa-star {
+    color: #0790f88e;
+}
+#resumen .fa-star.active {
+    color: #f7b500;
+}
+.like-btn.liked, .dislike-btn.disliked {
+    color: orange; /* Cambia el color del botón a naranja cuando se le ha dado 'like' */
+}
+.like-btn, .dislike-btn {
+    border: none;
+}
+.rangoCalificacion:disabled {
+    opacity: .5; /* Para hacer que los inputs deshabilitados se vean diferentes */
+    pointer-events: none;
+}
+.rangoCalificacion:disabled::-webkit-slider-runnable-track {
+    width: 100%;
+    cursor: pointer;
+    background: rgb(0, 153, 255);
+    border-radius: 5px;
+}
+.rangoCalificacion:disabled::-moz-range-progress {
+    background-color: #f7b500;
+}
+#resumen-calificacion, .resumen-comentarios {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+}
+#resumen-calificacion .calificacion {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+.calificacion p {
+  text-wrap: nowrap;
+}
+#comentarios {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 90%;
+    margin: 0 auto;
+}
+.comentario {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+}
+.comentario .fecha {
+    color: #333;
+    font-size: 1.3rem;
+}
+.quien-fue p{
+    max-width: 50rem;
+    text-align: start;
+}
+#horario {
+    width: 200px; /* Ajusta el ancho según sea necesario */
+    height: auto; /* Mantener la relación de aspecto */
+    border: solid 1px #ccc;
+    border-radius: 10px;
+}
+.comentario i {
+    margin-right: 0.5rem;
+    cursor: pointer;
+    color: #0abaff;
+}
+#map {
+    margin: 0 auto;
+    margin-top: 5rem;
+    margin-left: 3rem;
+    width: 48%;
+    height: 440px;
+    border: solid 1px #ccc;
+    border-radius: 10px;
+}
+
+
+/* Estilos para disponibilidad */
+#mesesytitulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-direction: column; 
+    margin-top: 1rem;
+}
+
+#mesesytitulo h2, #mesesytitulo h3, #mesesytitulo h4 {
+    margin: 0;
+    color: black;
+    font-size: 1.5rem;
+}
+
+#mes {
+    margin-top: 1rem;
+}
+
+#dias {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+#dia {
+    margin: 0;
+    color: black;
+    font-size: 1.3rem;
+    
+}
+
+#nombredia {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+#titulohorario p {
+    margin-top: 1rem;
+    color: black;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+#horas {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+#horas > * {
+    margin-right: 1rem;
+}
+
+#contenedor #contenedordispo {
+    background-color: #0abaff;
+    width: 45%;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    box-shadow: rgba(49, 67, 224, 0.13) 0px 2px 4px 0px inset;
+}
+.sobreEmpresa {
+    display: block !important;
+    align-items: center;
+    margin-top: 1rem;
+}
+/* Estilos para el contenedor del mapa */
+#wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3 {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Altura inicial del mapa en pantallas grandes */
+}
+
+/* Estilos para el mapa */
+.mapa {
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilos para filtrar  */
+.filtrarCanchas {
+    box-shadow: rgba(25, 70, 83, 0.24) 0px 1px 2px 0px;
+    border-radius: 10px;
+    padding: 5px;
+}
+.contenidofiltrarCanchas {
+    display: flex;
+    align-items: center;
+    justify-content: end; 
+    margin-right: 2rem;
+}
+
+.contenidofiltrarCanchas select {
+    padding: 10px;
+    margin-left: 10px;
+    width: 200px;
+    border: none;
+    border-bottom: 1px solid #333;
+    appearance: none;
+    cursor: pointer;
+}
+.contenidofiltrarCanchas option {
+    background-color: #ffffff; 
+    color: #333333;
+}
+.contenidofiltrarCanchas select > option:hover {
+    background-color: #007bff; 
+    color: #ffffff;
+}
+.contenidofiltrarCanchas select:focus {
+    outline: none;
+}
+.contenidofiltrarCanchas input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.filtrarCanchas input:focus,.filtrarCanchas select:focus {
+    border-color: #0abaff;
+    outline: none;
+}
+
+
+@media only screen and (max-width: 576px) {
+    .card {
+        width: calc(100% - 20px); /* Ajusta el ancho de cada tarjeta para pantallas aún más pequeñas */
+    }
+}
+
+@media only screen and (max-width:768px) {
+    #general {
+        width: 100%;
+        align-items: center;
+    }
+    .contenedor-resumen aside #resumen {
+        flex-direction: column;
+    }
+    .resumen-comentarios, #resumen-calificacion {
+        width: 100%;
+    }
+    .comentario {
+        flex-direction: column;
+    }
+    .carousel-bloque {
+        height: auto;
+        width: 100%;
+    }
+    #contenedor #contenedordispo {
+        width: 100%;
+    }
+    #contenedor {
+        margin-left: 0;
+        width: 90%;
+    }
+    .carouseldetalle  {
+        width: 100%;
+        height: 300px;
+    }
+    .sobreEmpresa {
+        width: 100%;
+    }
+    aside {
+        margin: 0 auto;
+        width: 90%;
+    }
+    #wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3 {
+        height: 300px; /* Reducir la altura del mapa en pantallas pequeñas */
+    }
+
+}
+
+
