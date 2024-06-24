@@ -89,8 +89,11 @@
     top: 10px;
     left: 10px;
     background: none;
+    margin: 0;
+    z-index: 9999;
     border: none;
     cursor: pointer;
+    display: inline-block;
 }
 
 .verMasComentarios {
@@ -606,17 +609,13 @@ aside{
 /*Retorno Flow*/
 
 .comprobante {
-    background-color: rgb(10, 186, 255); /* Fondo celeste */
-    border-radius: 10px; /* Esquinas redondeadas */
-    padding: 15px; /* Espacio interno */
-    text-align: center; /* Centrar contenido */
-    margin: 0 auto; /* Centrar horizontalmente */
-    max-width: 600px; /* Ancho máximo del contenedor */
-    margin-top: 20px; /* Espacio superior */
-}
-
-.comprobante h3 {
-    color: black; /* Color negro para el título */
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+    margin: 10% auto 0 auto; /* Centramos el formulario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 5%;
 }
 
 .comprobante p {

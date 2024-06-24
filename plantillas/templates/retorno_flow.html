@@ -6,16 +6,15 @@
 
 {% include 'bases/components/alertas.html' %}
 
-<div class="carousel">
 {% if transaccion.status == 2 %}
     <div class="comprobante">
-        <h3>Comprobante del pedido</h3>
-        <p>Pedido: {{ transaccion.commerceOrder }}</p>
-        <p>Fecha: {{ transaccion.requestDate }}</p>
-        <p>Asunto: {{ transaccion.subject }}</p>
-        <p>Correo: {{ transaccion.payer }}</p>
-        <p>Total: {{ transaccion.amount }} {{ transaccion.currency }}</p>
-        <p>Medio de Pago: {{ transaccion.media }}</p>
+        <h2 class="dashboard_cancha_titulo">Comprobante del pedido</h2><br>
+        <p>Pedido: <strong>{{ transaccion.commerceOrder }}</strong> </p>
+        <p>Fecha: <strong>{{ transaccion.requestDate }}</strong></p>
+        <p>Asunto: <strong>{{ transaccion.subject }}</strong></p>
+        <p>Correo: <strong>{{ transaccion.payer }}</strong></p>
+        <p>Total: <strong>{{ transaccion.amount }} {{ transaccion.currency }}</strong></p>
+        <p>Medio de Pago: <strong>{{ transaccion.media }}</strong></p>
     </div>
 {% endif %}
 

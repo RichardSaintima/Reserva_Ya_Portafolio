@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.like-button').forEach(button => {
       button.addEventListener('click', function(e) {
           e.preventDefault();
+          e.stopPropagation(); // Prevenir la propagación del evento de clic
           const url = this.getAttribute('data-url');
           const csrftoken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
   document.querySelectorAll('.sacarFovirotos').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function(e) {
       fetch(this.getAttribute('data-url'), {
         method: 'POST', // O el método adecuado para tu solicitud
         headers: {

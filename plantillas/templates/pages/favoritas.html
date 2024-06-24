@@ -7,6 +7,7 @@
   <div class="seccion-favoritas">
       {% for item in canchas_con_imagenes %}
           <div class="card-favoritas">
+            <a href="{% url 'plantillas:detalle_cancha' item.cancha.id_cancha %}" class="detail-link">
               <div class="image-container">
                   {% if item.primera_imagen %}
                       <img src="{{ item.primera_imagen.imagen.url }}" alt="Imagen de la cancha deportiva">
@@ -22,13 +23,16 @@
                       {% endif %}
                   </div>
               </div>
+            </a>
               <div class="card-favoritas-info">
+                <a href="{% url 'plantillas:detalle_cancha' item.cancha.id_cancha %}" class="detail-link">
                   <h2 class="title">{{ item.cancha.nombre }}</h2>
                   <p class="description">{{ item.cancha.descripcion }}</p>
                   <p class="price">${{ item.cancha.precio }} CLP hora.</p>
-                  <a class="like-button sacarFovirotos" data-url="{% url 'plantillas:cambiar_favorito' item.cancha.id_cancha %}">
+                </a>
+                  <p class="dislike-button sacarFovirotos" data-url="{% url 'plantillas:cambiar_favorito' item.cancha.id_cancha %}">
                       <i class="fa-solid fa-heart-crack"></i> Eliminar
-                  </a>
+                  </p>
               </div>
           </div>
       {% endfor %}

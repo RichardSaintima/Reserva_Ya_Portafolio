@@ -74,19 +74,22 @@
     padding-top: 10px;
 }
 
-.like-button {
+.dislike-button {
     position: absolute;
     bottom: 10px;
     right: 10px;
     background: none;
     border: none;
+    z-index: 9999;
     cursor: pointer;
     color: rgb(57, 158, 252);
+    display: inline-block;
 }
+
 .sacarFovirotos i {
     color: red;
 }
-.like-button i:hover, .like-button:hover {
+.dislike-button i:hover, .dislike-button:hover {
     color: #ccc;
 }
 
