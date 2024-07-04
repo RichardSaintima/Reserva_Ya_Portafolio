@@ -123,3 +123,43 @@ def eliminar_objetos_pendientes():
     tiempo_limite = timezone.now() - timedelta(minutes=1)
     objetos_pendientes = reserva.objects.filter(estado="Pendiente", fecha_creacion__lte=tiempo_limite)
     objetos_pendientes.delete()
+
+class Banco(models.Model):
+    id_banco= models.AutoField(primary_key=True)
+    nombre= models.CharField(max_length=100)
+    codigo= models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre
+    
+class DatosTransferencia(models.Model):
+    id_datos_transferencia= models.AutoField(primary_key=True)
+    usuario= models.ForeignKey(User, on_delete=models.CASCADE)
+    banco= models.ForeignKey(Banco,on_delete=models.CASCADE)
+    nombre= models.CharField(max_length=100)
+    numero_cuenta= models.CharField(max_length=20)
+    rut = models.CharField(max_length=12)
+    TIPO_CUENTA_CHOICES=[
+        ('corriente', 'Cuenta Corriente'),
+        ('ahorro', 'Cuenta de Ahorro'),
+        ('vista', 'Cuenta Vista'),
+        ('cuenta_rut', 'Cuenta RUT'),
+        ('ahorro_vivienda', 'Cuenta de Ahorro para la Vivienda'),
+    ]
+    tipo_cuenta= models.CharField(max_length=30,choices=TIPO_CUENTA_CHOICES)
+    correo= models.EmailField(blank=True,null=True)
+
+    def __str__(self):
+        return f"Transferencia a {self.nombre} en {self.banco.nombre}"
+    
+class Pagos(models.Model):
+    id_pagos= models.AutoField(primary_key=True)
+    usuario_empresa= models.ForeignKey(User,on_delete=models.CASCADE)
+    estado_pago= models.CharField(max_length=100,default="No transferido")
+    reserva= models.ForeignKey(reserva,on_delete=models.CASCADE)
+    total_pago= models.DecimalField(max_digits=10,decimal_places=2, blank=True, null=True)
+    fecha = models.DateTimeField(default=timezone.now)
+    foto_comprobante=  models.ImageField(upload_to='img/comprobantes/', blank=True, null=True)
+
+    def __str__(self):
+        return f"Pago a {self.usuario_empresa.username} estado: {self.estado_pago}"

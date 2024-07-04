@@ -28,5 +28,13 @@ urlpatterns = [
 
 
     path('dashboard_solicitudes/', views.dashboard_solicitudes, name='dashboard_solicitudes'),
-    path('dashboard_solicitudes/aceptar/<int:id_solicitud>',views.dashboard_aceptar_solicitud,name='dashboard_aceptar_solicitud')
+    path('dashboard_solicitudes/aceptar/<int:id_solicitud>',views.dashboard_aceptar_solicitud,name='dashboard_aceptar_solicitud'),
+
+    path('dashboard_datos/',views.dashboard_datos_transferencia,name='dashboard_datos-transferencia'),
+    path('tus_reservas/',views.ver_reservas,name='ver_reservas'),
+    path('tus_pagos/',views.pagos_empresa,name='pagos_empresa'),
+    path('pagos_a_empresas/',views.pagos_empresa_admin,name='pagos_empresa-admin'),
+
+    path('transferir_empresa/<int:id_pagos>',views.modificar_pago,name='transferir_empresa'),
+
 ]

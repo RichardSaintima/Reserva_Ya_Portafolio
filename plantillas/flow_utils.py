@@ -27,7 +27,7 @@ def create_payment(request, id_pedido, monto, email):
     url_return = request.build_absolute_uri(reverse('plantillas:retorno_flow'))
     params = {
         'apiKey': settings.FLOW_KEY_SANDBOX,
-        'commerceOrder': f"F{id_pedido}" ,
+        'commerceOrder': f"j{id_pedido}" ,
         'subject': 'Pago de pruebA',
         'currency': 'CLP',
         'amount': monto,

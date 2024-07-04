@@ -1,0 +1,49 @@
+.contenedor-datos_transferencia{
+    display: flex;
+    flex-direction: column; 
+    margin-top: 5rem;
+
+}
+.formulario-transferencia{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+.titulo-transferencia{
+    color: black;
+}
+.label-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.label-input input{
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+.label-input select{
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+.btn-transferencia{
+    width: 30%;
+    margin-top: 20px !important;
+    margin: 0 auto;
+    background-color: #0abaff;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 1rem;
+    border-color: #0abaff;
+    transition: all .5s;
+}
+.error p{
+    color: red;
+    font-size: 15px;
+}
+.contenedor-datos-tr p{
+    width: 80%;
+}

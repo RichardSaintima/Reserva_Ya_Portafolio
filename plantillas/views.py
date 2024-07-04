@@ -8,7 +8,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from plantillas.validation.ReservaHoraValidacion import validar_datos_reserva
-from administrador.models import Comentario, Comuna, Direccion, Favorito, Region, Tipo_cancha, Cancha, Disponibilidad, reserva, ImagenCancha
+from administrador.models import Comentario, Comuna, Direccion, Favorito, Region, Tipo_cancha, Cancha, Disponibilidad, reserva, ImagenCancha,Pagos
 from geopy.geocoders import Nominatim
 import json
 from django.conf import settings
@@ -461,7 +461,7 @@ def dashboard_comunicacion(request, id_cancha):
         cancha = get_object_or_404(Cancha, id_cancha=id_cancha)
         email_destinatario = cancha.user.email
         email_remitente = usuario.email
-
+        
         # Crear el objeto EmailMessage
         email = EmailMessage(
             'Asunto del correo electrónico',
@@ -551,7 +551,17 @@ def retorno_flow(request):
     if transaccion['status'] == 2:
         reserva1.estado_pago = "Pagado"
         reserva1.save()
+        usuario_cancha= reserva1.cancha.user
+        pago = reserva1.total * Decimal('0.8')
+        nuevo_pago=Pagos(
+            usuario_empresa=usuario_cancha,
+            reserva= reserva1,
+            total_pago= pago
+        )
+        nuevo_pago.save()
+
     else:
         reserva1.delete()
     
     return render(request,'retorno_flow.html',{'transaccion': transaccion})
+

@@ -1,0 +1,17 @@
+{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_main">
+  <header class="main_header">
+    <div class="user_info">
+      {% if usuario.profile_image %}
+        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+      {% else %}
+              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+      {% endif %}
+        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+    </div>
+</header>
+
+</div>
+
+{% endblock %}

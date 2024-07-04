@@ -12,7 +12,7 @@
     position: fixed;
     top: 0;
     transition: top 0.3s;
-    z-index: 1000;
+    z-index:1010;
 }
 .dashboard_busqueda_titulo {
     font-size: 2.5rem;
@@ -105,20 +105,26 @@
 
 .dashboard_sidebar {
     position: fixed;
-    top: 4rem; /* Ajusta según sea necesario */
-    left: 0;
+    top: 4rem;
+    left: 0; /* Cambiado de -17% a -100% para asegurar que esté completamente fuera de la pantalla */
     width: 17%;
-    height: calc(100% - 4rem); /* Ajuste para el top */
+    height: calc(100% - 4rem);
     background-color: #0abaff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    overflow-y: auto; /* Asegúrate de tener esto */
+    overflow-y: auto;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: left 0.3s ease-in-out; /* Añadido para suavizar la transición */
+    z-index: 1000; /* Asegura que el sidebar esté por encima de otros elementos */
 }
 
+.dashboard_sidebar.open {
+    left: 0;
+    transition: left 0.3s ease-in-out;
+  }
 .dashboard_menu {
     margin-top: 2rem;
     display: flex;
@@ -161,7 +167,6 @@
 }
 .dashboard_contenido {
     margin-left: 17%; /* Espacio para el sidebar */
-    padding: 2rem;
     width: 83%;
     min-height: 100vh; /* Asegura que el contenido principal llene la pantalla */
 }
@@ -226,21 +231,14 @@
         cursor: pointer;
     }
     .dashboard_sidebar {
-        width: 40%;
+        margin-top: 1rem;
+        width: 70%; /* Ajustado para que no ocupe toda la pantalla en tablets */
+        display: block; /* Cambiado de 'none' a 'block' */
+        left: -100%; /* Asegura que esté fuera de la pantalla inicialmente */
     }
 
-    .dashboard_contenido {
-        margin-left: 40%;
-        width: 60%;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .dashboard_sidebar {
-        display: none;
-        width: 100%;
-        height: auto;
-        position: relative;
+    .dashboard_sidebar.open {
+        left: 0;
     }
 
     .dashboard_contenido {

@@ -1,0 +1,50 @@
+{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_main">
+  <header class="main_header">
+    <div class="user_info">
+      {% if usuario.profile_image %}
+        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+      {% else %}
+              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+      {% endif %}
+        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+    </div>
+</header>
+<div class="contenedor-pago_empresa">
+    <div class="contenedor-datos_transferencia">
+        <h3 style="color: #333;">Datos de transferencia para la empresa: {{user_empresa.username}}</h3>
+        <div class="datos-transferencia">
+            <p>Banco: {{datos_transferencia.banco}}</p>
+            <p>Rut: {{datos_transferencia.rut}}</p>
+            <p>Nro Cuenta: {{datos_transferencia.numero_cuenta}}</p>
+            <p>Nombre: {{datos_transferencia.nombre}}</p>
+            <p>Tipo de Cuenta: {{datos_transferencia.tipo_cuenta}}</p>
+            <p>Correo: {{datos_transferencia.correo}}</p>
+        </div>
+    </div>
+    <div class="contenedor-datos_transferencia">
+        <h3 style="color: #333;">Total a transferir: ${{pago.total_pago}}</h3>
+        <form method="post" enctype="multipart/form-data">
+            <p>
+                <strong>Recordatorio:</strong>Al adjuntar la fotografia del comprobante, el estado del pago pasará a "Transferido"
+            </p>
+            {% csrf_token %}
+            <div class="label-input">
+                <label for="{{ form.foto_comprobante.id_for_label }}">Foto de comprobante de transferencia: </label>
+                {{ form.foto_comprobante }}
+                {% if form.foto_comprobante.errors %}
+                <div class="error">
+                    {% for error in form.foto_comprobante.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}

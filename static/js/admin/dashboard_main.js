@@ -21,3 +21,21 @@ function toggleDetails(id) {
         details.scrollIntoView({ behavior: 'smooth' });
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnOpen = document.getElementById('btnDashboardMenuMobile');
+    const btnClose = document.getElementById('btnDashboardCloseMenuMobile');
+    const sidebar = document.getElementById('dashboardSidebar');
+
+    btnOpen.addEventListener('click', function() {
+        sidebar.classList.toggle('open');
+        btnOpen.style.display = sidebar.classList.contains('open') ? 'none' : 'block';
+        btnClose.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+    });
+    
+    btnClose.addEventListener('click', function() {
+        sidebar.classList.toggle('open');
+        btnOpen.style.display = sidebar.classList.contains('open') ? 'none' : 'block';
+        btnClose.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+    });
+  });

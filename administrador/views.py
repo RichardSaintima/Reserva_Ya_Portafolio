@@ -7,17 +7,22 @@ from django.db.models import Q, Avg, Count
 from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
-from .models import Favorito, Tipo_cancha, Cancha, ImagenCancha, Disponibilidad, reserva, Comentario, Region, Direccion, Comuna
+from .models import Favorito, Tipo_cancha, Cancha, ImagenCancha, Disponibilidad, reserva, Comentario, Region, Direccion, Comuna,DatosTransferencia,Pagos
 from django.db import transaction
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,user_passes_test
 from datetime import date, datetime, timedelta
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db.models import Sum
 from django.core.mail import send_mail
 from plantillas.models import Solicitud, Rol
+from .forms import DatosTransferenciaForm,PagosForm
 
 # Create your views here.
+
+
+def user_is_staff(user):
+    return user.is_staff
 
 # TODOS LOS VIEWS DE DASHBOARD
 @login_required
@@ -124,7 +129,7 @@ def dashboard_ordenes(request):
     # Obtener todas las canchas del usuario
     canchas_usuario = Cancha.objects.filter(user=usuario)
     # Obtener todas las reservas en las canchas del usuario
-    reservas = reserva.objects.filter(cancha__in=canchas_usuario)
+    reservas = reserva.objects.filter(cancha__in=canchas_usuario,estado_pago='Pagado')
     # Obtener todas las direcciones relacionadas con las reservas
     direcciones = Direccion.objects.filter(cancha__in=reservas.values_list('cancha', flat=True))
 
@@ -134,7 +139,7 @@ def dashboard_ordenes(request):
         'reservas': reservas,
         'canchas_usuario': canchas_usuario,
         'direcciones': direcciones,
-    }
+    }   
     return render(request, 'ordenes/detalles_nuevas_ordenes.html', context)
 
 
@@ -482,11 +487,12 @@ def dashboard_configuracion(request):
 # FIN TODOS LOS VIEWS DE LAS HISTORIALES
 
 # VIEWS DE SOLICITUDES
+@user_passes_test(user_is_staff)
 @login_required
 def dashboard_solicitudes(request):
     solicitudes = Solicitud.objects.filter(estado="pendiente")
     return render(request,'solicitud/solicitudes.html',{'solicitudes':solicitudes})
-
+@user_passes_test(user_is_staff)
 @login_required
 def dashboard_aceptar_solicitud(request,id_solicitud):
     solicitud= get_object_or_404(Solicitud,id_solicitud= id_solicitud)
@@ -513,3 +519,89 @@ def dashboard_aceptar_solicitud(request,id_solicitud):
 
     send_mail("Creacion de cuenta de empresa",mensaje,settings.EMAIL_HOST_USER,[solicitud.correo_electronico] )
     return render(request,'solicitud/solicitudes.html')
+
+@login_required
+def dashboard_datos_transferencia(request):
+    usuario = request.user
+    # Verificar si ya existe un registro de DatosTransferencia para el usuario actual
+    try:
+        datos_transferencia = DatosTransferencia.objects.get(usuario=request.user)
+        form = None  # No necesitamos el formulario si ya hay datos de transferencia
+    except DatosTransferencia.DoesNotExist:
+        datos_transferencia = None
+        # Si no hay datos de transferencia existentes, mostramos el formulario
+        if request.method == 'POST':
+            form = DatosTransferenciaForm(request.POST)
+            if form.is_valid():
+                datos_transferencia = form.save(commit=False)
+                datos_transferencia.usuario = request.user
+                datos_transferencia.save()
+                return redirect('/')
+        else:
+            form = DatosTransferenciaForm()
+    
+    context = {
+        'datos_transferencia': datos_transferencia,
+        'form': form,
+        'usuario':usuario
+    }
+    return render(request, 'datos_transferencia/datos_transferencia.html', context) 
+
+@login_required
+def ver_reservas(request):
+    usuario = request.user
+    reservas= reserva.objects.filter(user=request.user,estado_pago='Pagado')
+    context = {
+        'reservas': reservas,
+        'usuario':usuario
+    }
+    return render(request,'ordenes/reservas.html',context)
+
+@login_required
+def pagos_empresa(request):
+    usuario= request.user
+    pagos= Pagos.objects.filter(usuario_empresa=usuario)
+    context={
+        'usuario':usuario,
+        'pagos':pagos
+    }
+    return render(request,'Pagos/pagos_empresa.html',context)
+
+@user_passes_test(user_is_staff)
+@login_required
+def pagos_empresa_admin(request):
+    usuario= request.user
+    pagos= Pagos.objects.all()
+    context={
+        'usuario':usuario,
+        'pagos':pagos
+    }
+    return render(request,'Pagos/pagos_empresa-admin.html',context)
+
+
+@user_passes_test(user_is_staff)
+@login_required
+def modificar_pago(request,id_pagos):
+    pago = get_object_or_404(Pagos,id_pagos=id_pagos)
+    usuario= request.user
+    user_empresa=pago.usuario_empresa
+    datos_transferencia= get_object_or_404(DatosTransferencia,usuario=user_empresa)
+    if request.method=='POST':
+        form= PagosForm(request.POST,request.FILES,instance=pago)
+        if form.is_valid():
+            pago_modificado= form.save(commit=False)
+            pago_modificado.estado_pago= "Transferido"
+            pago_modificado.save()
+            return redirect('/')
+    else:
+        form= PagosForm(instance=pago)
+    context={
+        'form':form,
+        'usuario':usuario,
+        'datos_transferencia': datos_transferencia,
+        'user_empresa':user_empresa,
+        'pago':pago
+    }
+
+    return render(request,'Pagos/pagos_detalle_transferir.html',context)
+    

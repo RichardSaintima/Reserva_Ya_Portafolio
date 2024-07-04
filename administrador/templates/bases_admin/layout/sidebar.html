@@ -1,4 +1,4 @@
-<aside class="dashboard_sidebar">
+<aside id="dashboardSidebar" class="dashboard_sidebar">
     <nav class="dashboard_menu">
         {% if not user.is_authenticated %}
             <a href="{% url 'account_login' %}" class="dashboard__enlace">
@@ -21,33 +21,66 @@
         {% endif %}
         {% if user.is_staff %}
             <a href="{% url 'administrador:dashboard_solicitudes' %}" class="dashboard__enlace">
-                <i class="fa-solid fa-building-user dashboard__icono"></i>
+                <i class="fa-solid fa-square-poll-vertical dashboard__icono"></i>
                 <span class="dashboard__menu-texto">
                     Solicitudes
                 </span>    
             </a>
         {% endif %}
-
+        {% if user.profile.rol_id == 2 and not user.is_staff %}
+        <a href="{% url 'administrador:dashboard_datos-transferencia' %}" class="dashboard__enlace">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            <span class="dashboard__menu-texto">
+                Datos De Transferencia
+            </span>    
+        </a>
+        {% endif %}
+        {% if user.profile.rol_id == 2 %}
         <a href="{% url 'administrador:dashboard_cancha' %}" class="dashboard__enlace" >
             <i class="fa-solid fa-kaaba dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Canchas
             </span>    
         </a>
-
+        {% endif %}
+        {% if user.profile.rol_id == 2 %}
         <a href="{% url 'administrador:dashboard_informe' %}" class="dashboard__enlace">
             <i class="fa-solid fa-chart-line dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Informes
             </span>    
         </a>
+        {% endif %}
+        {% if user.profile.rol_id == 2 and not user.is_staff %}
+        <a href="{% url 'administrador:pagos_empresa' %}" class="dashboard__enlace">
+            <i class="fa-solid fa-money-bill-wave"></i>
+            <span class="dashboard__menu-texto">
+                Tus transferencias
+            </span>    
+        </a>
+        {% endif %}
+        {% if user.is_staff %}
+        <a href="{% url 'administrador:pagos_empresa-admin' %}" class="dashboard__enlace">
+            <i class="fa-solid fa-square-poll-vertical dashboard__icono"></i>
+            <span class="dashboard__menu-texto">
+                Pagos a empresas
+            </span>    
+        </a>
+        {% endif %}
+        {% if user.profile.rol_id == 2 %}
         <a href="{% url 'administrador:dashboard_ordenes' %}" class="dashboard__enlace">
             <i class="fa-solid fa-border-all dashboard__icono"></i>
             <span class="dashboard__menu-texto">
                 Ordenes
             </span>    
         </a>
-
+        {% endif %}
+        <a href="{% url 'administrador:ver_reservas' %}" class="dashboard__enlace" >
+            <i class="fa-regular fa-calendar-days"></i>
+            <span class="dashboard__menu-texto">
+                Tus Reservas!
+            </span>    
+        </a>
         <a href="{% url 'administrador:dashboard_perfil' %}" class="dashboard__enlace" >
             <i class="fa-solid fa-address-card dashboard__icono"></i>
             <span class="dashboard__menu-texto">

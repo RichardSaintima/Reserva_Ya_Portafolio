@@ -1,0 +1,73 @@
+{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% include 'bases_admin/components/alertas.html' %}
+<header class="main_header">
+    <div class="user_info">
+      {% if usuario.profile_image %}
+        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+      {% else %}
+              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+      {% endif %}
+        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+    </div>
+</header>
+{% if datos_transferencia %}
+<div class="contenedor-datos_transferencia">
+    <h1 class="titulo-transferencia">Datos de transferencia:</h1>
+    <div class="contenedor-datos-tr">
+        <p><strong>Banco:</strong> {{ datos_transferencia.banco }}</p>
+        <p><strong>Nombre:</strong> {{ datos_transferencia.nombre }}</p>
+        <p><strong>Número de Cuenta:</strong> {{ datos_transferencia.numero_cuenta }}</p>
+        <p><strong>Rut:</strong> {{ datos_transferencia.rut }}</p>
+        <p><strong>Tipo de Cuenta:</strong> {{ datos_transferencia.get_tipo_cuenta_display }}</p>
+        <p><strong>Correo:</strong> {{ datos_transferencia.correo }}</p>
+    </div>
+</div>
+{% else %}
+<div class="contenedor-datos_transferencia">
+    <h1 class="titulo-transferencia">Datos de transferencia:</h1>
+    <form method="post" class="formulario-transferencia">
+        {% csrf_token %}
+        <div class="label-input">
+            <label for="{{ form.banco.id_for_label }}">Banco: </label>
+            {{ form.banco }}
+        </div>
+        <div class="label-input">
+            <label for="{{ form.nombre.id_for_label }}">Nombre: </label>
+            {{ form.nombre }}
+        </div>
+        <div class="label-input">
+            <label for="{{ form.numero_cuenta.id_for_label }}">Número de Cuenta: </label>
+            {{ form.numero_cuenta }}
+            {% if form.numero_cuenta.errors %}
+            <div class="error">
+                {% for error in form.numero_cuenta.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="label-input">
+            <label for="{{ form.rut.id_for_label }}">Rut: </label>
+            {{ form.rut }}
+            {% if form.rut.errors %}
+            <div class="error">
+                {% for error in form.rut.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="label-input">
+            <label for="{{ form.tipo_cuenta.id_for_label }}">Tipo de Cuenta: </label>
+            {{ form.tipo_cuenta }}
+        </div>
+        <div class="label-input">
+            <label for="{{ form.correo.id_for_label }}">Correo: </label>
+            {{ form.correo }}
+        </div>
+        <button class="btn-transferencia" type="submit">Guardar Datos de Transferencia</button>
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}

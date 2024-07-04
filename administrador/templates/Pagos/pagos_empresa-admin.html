@@ -1,0 +1,57 @@
+{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% include 'bases_admin/components/alertas.html' %}
+<div class="dashboard_main">
+  <header class="main_header">
+    <div class="user_info">
+      {% if usuario.profile_image %}
+        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+      {% else %}
+              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+      {% endif %}
+        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+    </div>
+</header>
+<div class="contenedor-pago_empresa">
+    <h1>Recordatorio:</h1>
+    <p>
+        <strong>Recordatorio:</strong>Visualizarás todos pagos que se deben realizar a las cuentas de empresa
+    </p>
+    <table class="summary_table_cancha">
+        <thead>
+            <tr>
+                <th>Empresa</th>
+                <th>Estado Pago</th>
+                <th>Total a Pagar</th>
+                <th>Fecha de reserva</th>
+                <th>Ir a pagar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pago in pagos %}
+            <tr>
+                <td>{{pago.usuario_empresa}}</td>
+                <td>{{ pago.estado_pago }}</td>
+                <td>
+                    ${{pago.total_pago}}
+                </td>
+                <td>
+                    {{pago.fecha}}
+                </td>
+                <td>
+                    {% if pago.estado_pago == "Transferido" %}
+                        Transferido
+                    {% else %}
+                    <a href="{% url 'administrador:transferir_empresa' pago.id_pagos %}" class="btn_detalle">
+                        <i class="fa-solid fa-gears"></i>
+                        Transferir
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+{% endblock %}

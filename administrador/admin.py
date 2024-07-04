@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Favorito, Tipo_cancha, Cancha, reserva, Disponibilidad, Comentario, ImagenCancha, Region, Direccion, Comuna
+from .models import Favorito, Tipo_cancha, Cancha, reserva, Disponibilidad, Comentario, ImagenCancha, Region, Direccion, Comuna,Banco,DatosTransferencia,Pagos
 
 class Tipo_canchaAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'foto', 'descripcion', 'cantidad_cancha', 'categoria_tipo_cancha')
@@ -31,6 +31,15 @@ class ComunaAdmin(admin.ModelAdmin):
 class ImagenCanchaAdmin(admin.ModelAdmin):
     list_display = ('cancha', 'imagen')
 
+class BancoAdmin(admin.ModelAdmin):
+    list_display=('nombre','codigo')
+
+class DatosTransferenciaAdmin(admin.ModelAdmin):
+    list_display=('id_datos_transferencia','usuario','banco')
+
+class PagosAdmin(admin.ModelAdmin):
+    list_display= ('id_pagos','usuario_empresa','estado_pago','reserva','fecha')
+
 admin.site.register(Tipo_cancha, Tipo_canchaAdmin)
 admin.site.register(Cancha, CanchaAdmin)
 admin.site.register(Favorito, FavoritoAdmin)
@@ -41,3 +50,6 @@ admin.site.register(ImagenCancha, ImagenCanchaAdmin)
 admin.site.register(Region, RegionAdmin)
 admin.site.register(Direccion, DireccionAdmin)
 admin.site.register(Comuna, ComunaAdmin)
+admin.site.register(Banco,BancoAdmin)
+admin.site.register(DatosTransferencia,DatosTransferenciaAdmin)
+admin.site.register(Pagos,PagosAdmin)

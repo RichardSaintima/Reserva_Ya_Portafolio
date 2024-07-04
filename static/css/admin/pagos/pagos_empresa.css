@@ -1,0 +1,9 @@
+.contenedor-pago_empresa{
+    display: flex;
+    flex-direction: column;
+}
+.contenedor-pago_empresa h1{
+    margin: 0 auto;
+    margin-top: 20px !important;
+    color: #333;
+}

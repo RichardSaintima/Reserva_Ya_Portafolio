@@ -53,5 +53,5 @@ class SolicitudForm(forms.ModelForm):
 
     def clean_correo_electronico(self):
         email = self.cleaned_data.get('correo_electronico')
-        # Lógica de validación adicional para email si es necesario
+        
         return email
