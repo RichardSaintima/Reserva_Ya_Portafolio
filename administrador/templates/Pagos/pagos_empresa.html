@@ -1,63 +1,88 @@
-{% extends "bases_admin/base_admin.html" %} {% load static %} {% block content%}
+{% extends "bases_admin/base_admin.html" %}
+{% load static %}
+{% block content %}
 {% include 'bases_admin/components/alertas.html' %}
 <div class="dashboard_main">
-  <header class="main_header">
-    <div class="user_info">
-      {% if usuario.profile_image %}
-        <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
-      {% else %}
-              <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
-      {% endif %}
-        <span class="user_name">Bienvenido, {{ usuario.username }}</span>
-    </div>
-</header>
-<div class="contenedor-pago_empresa">
-    <h1>Recordatorio:</h1>
-    <p>
-        <strong>Recordatorio:</strong> Como parte de nuestros acuerdos, Reservas Ya! cobra una comisión del 20% por cada reserva realizada a través de nuestra plataforma. Esta comisión se aplica a todos
-         los espacios que subas y se reservan con éxito. A continuación, se detallan los pagos que se te deben realizar, 
-         ya descontando la comisión del 20%.
-         <br>
-         Si es que en Detalles se visualiza "No disponible" se debe a que no se a realizado la transferencia aún.
-         <br>
-         <br>
-    </p>
-    <table class="summary_table_cancha">
-        <thead>
-            <tr>
-                <th>Reserva ID</th>
-                <th>Estado Pago</th>
-                <th>Total a Pagar</th>
-                <th>Fecha de reserva</th>
-                <th>Detalles</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for pago in pagos %}
-            <tr>
-                <td>{{pago.reserva.id_reserva}}</td>
-                <td>{{ pago.estado_pago }}</td>
-                <td>
-                    ${{pago.total_pago}}
-                </td>
-                <td>
-                    {{pago.fecha}}
-                </td>
-                <td>
-                    {% if pago.estado_pago == "Transferido" %}
-                    <a href="#" class="btn_detalle">
-                        <i class="fa-solid fa-gears"></i>
-                        Ver Comprobante de Pago
-                    </a>
-                    {% else %}
+    <header class="main_header">
+        <div class="user_info">
+            {% if usuario.profile_image %}
+                <img class="FotoPerfil" src="{{ usuario.profile_image.url }}" alt="User Avatar" />
+            {% else %}
+                <img class="FotoPerfil" src="{% static 'img/otros/foto_hombre.png' %}" alt="User Avatar" />
+            {% endif %}
+            <span class="user_name">Bienvenido, {{ usuario.username }}</span>
+        </div>
+    </header>
+    <div class="contenedor-pago_empresa">
+        <h1>Recordatorio:</h1>
+        <p>
+            <strong>Recordatorio:</strong> Como parte de nuestros acuerdos, Reservas Ya! cobra una comisión del 20% por cada reserva realizada a través de nuestra plataforma. Esta comisión se aplica a todos los espacios que subas y se reservan con éxito. A continuación, se detallan los pagos que se te deben realizar, ya descontando la comisión del 20%.
+            <br>
+            Si es que en Detalles se visualiza "No disponible" se debe a que no se ha realizado la transferencia aún.
+            <br>
+            <br>
+        </p>
+        <table class="summary_table_cancha tabla-pagos">
+            <thead>
+                <tr>
+                    <th>Reserva ID</th>
+                    <th>Estado Pago</th>
+                    <th>Total a Pagar</th>
+                    <th>Fecha de reserva</th>
+                    <th>Detalles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pago in pagos %}
+                <tr>
+                    <td>{{ pago.reserva.id_reserva }}</td>
+                    <td>{{ pago.estado_pago }}</td>
+                    <td>${{ pago.total_pago }}</td>
+                    <td>{{ pago.fecha }}</td>
+                    <td>
+                        {% if pago.estado_pago == "Transferido" %}
+                        <button class="btn_detalle mostrarComprobante" data-target="#comprobante-tabla-{{ forloop.counter }}">
+                            <i class="fa-solid fa-gears"></i>
+                            Ver Comprobante de Pago
+                        </button>
+                        <div class="compIms" id="comprobante-tabla-{{ forloop.counter }}">
+                            <img class="comprobante-img" src="{{ pago.foto_comprobante.url }}" alt="Comprobante de pago">
+                            <p class="cerrar-imagen">X</p>
+                        </div>
+                        {% else %}
                         No disponible
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="contenedor-pagos_telefono">
+            {% for pago in pagos %}
+            <div class="card card-pagos">
+                <div class="image-container">
+                    {% if pago.foto_comprobante %}
+                    <div class="compIms" id="comprobante-card-{{ forloop.counter }}">
+                        <img class="comprobante-img" src="{{ pago.foto_comprobante.url }}" alt="">
+                        <p class="cerrar-imagen">X</p>
+                    </div>
+                    {% else %}
+                    <h1 class="no-pago">No hay pago aún</h1>
+                    <br>
+                    <br>
                     {% endif %}
-                </td>
-            </tr>
+                </div>
+                <div class="card-info">
+                    <h2 class="title">Reserva: {{ pago.reserva.id_reserva }}</h2>
+                    <p class="description">Estado de Pago: {{ pago.estado_pago }}</p>
+                    <p class="price">Pago: ${{ pago.total_pago }}</p>
+                    <p class="price">Fecha: {{ pago.fecha }}</p>
+                    <button class="btn_detalle mostrarComprobante" data-target="#comprobante-card-{{ forloop.counter }}">Ver Comprobante de Pago</button>
+                </div>
+            </div>
             {% endfor %}
-        </tbody>
-    </table>
+        </div><!--Fin contenedor pagos cel-->
+    </div>
 </div>
-</div>
-
+<div class="overlay"></div>
 {% endblock %}

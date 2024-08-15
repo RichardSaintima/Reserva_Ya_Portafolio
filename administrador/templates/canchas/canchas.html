@@ -6,14 +6,25 @@
 {% include 'bases_admin/components/alertas.html' %}
 <div class="dashboard_cancha">
     <h3 class="dashboard_cancha_titulo">Administración de Canchas</h3>
+    <p>
+        <strong>Recordatorio:</strong>El botón para agregar canchas estará habilitado solamente si tienes datos de transferencia. De lo contrario, el botón que visualizarás será el de 'Datos de transferencia'.
+    </p>
     <header class="cancha_header">
-        <a href="{% url 'administrador:dashboard_cancha_agregar' %}" class="btn_header">
-            <i class="fas fa-plus"></i>
-            Agregar Cancha
-        </a>
+        {% if datos_transferencia %}
+            <a href="{% url 'administrador:dashboard_cancha_agregar' %}" class="btn_header">
+                <i class="fas fa-plus"></i>
+                Agregar Cancha
+            </a>
+        {% else %}
+            <a href="{% url 'administrador:dashboard_datos-transferencia' %}" class="btn_header">
+                <i class="fas fa-plus"></i>
+                Datos de transferencia
+            </a>
+            
+        {% endif %}
     </header>
     <section class="cancha_content">
-        <div class="table_section_cancha">
+        <div class="table_section_cancha tabla-pagos">
             <h2>Resumen de Actividad</h2>
             <table class="summary_table_cancha">
                 <thead>
@@ -62,6 +73,35 @@
             </table>
         </div>
     </section>
+    <div class="contenedor-pagos_telefono ">
+        {% for cancha in canchas %}
+        <div class="card card-pagos">
+            <div class="image-container">
+                {% with cancha.imagenes.first as primera_imagen %}
+                {% if primera_imagen %}
+                    <img class="FotoProductocancha" src="{{ primera_imagen.imagen.url }}" alt="LogoTipo" />
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="card-info">
+                <h2 class="title">Cancha: {{cancha.nombre}}</h2>
+                <p class="description" style="margin-bottom: 10px;">Tipo de cancha: {{ cancha.tipo_cancha }}</p>
+                <a href="{% url 'administrador:dashboard_cancha_administrar' cancha.id_cancha %}" style="margin-bottom: 10px;" class="btn_detalle">
+                    <i class="fa-solid fa-gears"></i>
+                    Detalles
+                </a>
+                <a href="{% url 'administrador:dashboard_cancha_modificar' cancha.id_cancha %}" style="margin-bottom: 10px;" class="btn_editar">
+                    <i class="fas fa-edit"></i>
+                    Editar
+                </a>
+                <a href="{% url 'administrador:dashboard_cancha_eliminar' cancha.id_cancha %}" class="btn_eliminar" onclick="return confirmarEliminacion(event, this);">
+                    <i class="fas fa-trash-alt"></i>
+                    Eliminar
+                </a>
+            </div>
+        </div>
+{% endfor %}
+    </div><!--Fin contenedor pagos cel-->
 </div><script>
     function confirmarEliminacion(event, element) {
         event.preventDefault();

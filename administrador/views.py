@@ -25,6 +25,7 @@ def user_is_staff(user):
     return user.is_staff
 
 # TODOS LOS VIEWS DE DASHBOARD
+@user_passes_test(user_is_staff)
 @login_required
 def dashboard(request):
     usuario = request.user
@@ -160,9 +161,11 @@ def dashboard_detalle_cancha(request):
 @login_required
 def dashboard_cancha(request):
     canchas = Cancha.objects.filter(user=request.user)
+    datos_transferencia= DatosTransferencia.objects.filter(usuario=request.user).exists()
     context = {
         'titulo': 'Cancha Administrador',
-        'canchas': canchas
+        'canchas': canchas,
+        'datos_transferencia': datos_transferencia
     }
     return render(request, 'canchas/canchas.html', context)
 
@@ -492,6 +495,7 @@ def dashboard_configuracion(request):
 def dashboard_solicitudes(request):
     solicitudes = Solicitud.objects.filter(estado="pendiente")
     return render(request,'solicitud/solicitudes.html',{'solicitudes':solicitudes})
+
 @user_passes_test(user_is_staff)
 @login_required
 def dashboard_aceptar_solicitud(request,id_solicitud):

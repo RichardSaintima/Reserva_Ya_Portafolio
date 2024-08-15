@@ -7,3 +7,82 @@
     margin-top: 20px !important;
     color: #333;
 }
+
+@media (max-width: 530px) {
+    .tabla-pagos{
+        display: none;
+    }
+    
+}
+@media (min-width: 530px) {
+    .contenedor-pagos_telefono{
+        display: none;
+    }
+    
+}
+.card-pagos{
+    margin-bottom: 1rem;
+    border: 1px solid rgba(48, 48, 50, 0.665);
+    background-color: transparent;
+    text-align: left;
+}
+.card-pagos p{
+    color: black;
+}
+.card-pagos img{
+    box-shadow: 5px 5px 5px 5px #48474719;
+    margin-bottom: 2rem;
+}
+
+.card-pagos:hover{
+    background-color: transparent;
+}
+.no-pago{
+    margin-bottom: 2rem;
+}
+
+.compIms {
+    display: none;
+    position: fixed;
+    z-index: 9900;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.comprobante-img {
+    display: block; /* Cambiado de 'none' a 'block' */
+    width: 100%; /* Asegura que la imagen llene el contenedor */
+    height: auto !important;
+    max-height: 80vh; /* Limita la altura máxima */
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(92, 131, 250, 0.434);
+    z-index: 9800;
+}
+
+.cerrar-imagen {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.mostrarComprobante {
+    border: none;
+}
